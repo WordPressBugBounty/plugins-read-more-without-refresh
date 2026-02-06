@@ -1,0 +1,451 @@
+/**
+ * Read More Without Refresh - Admin Settings Page Styles
+ * 
+ * @package ReadMoreWithoutRefresh
+ * @version 3.4.0
+ */
+
+/* Main Container */
+.rmwr-settings-wrap {
+    max-width: 1400px;
+    margin: 20px 20px 0 2px;
+}
+
+/* Header */
+.rmwr-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.rmwr-header h1 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: #23282d;
+}
+
+.rmwr-subtitle {
+    margin: 0;
+    color: #646970;
+    font-size: 14px;
+}
+
+/* Settings Container */
+.rmwr-settings-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.rmwr-main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.rmwr-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+/* Tabs */
+.rmwr-tabs-wrapper {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin-bottom: 20px;
+}
+
+.rmwr-tab-nav {
+    display: flex;
+    border-bottom: 1px solid #c3c4c7;
+    background: #f6f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.rmwr-tab {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0;
+    text-decoration: none;
+    color: #50575e;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.rmwr-tab:hover {
+    color: #2271b1;
+    background: #fff;
+}
+
+.rmwr-tab.active {
+    color: #2271b1;
+    background: #fff;
+    border-bottom-color: #2271b1;
+}
+
+.rmwr-pro-badge-small {
+    display: inline-block;
+    background: #d63638;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+/* Tab Content */
+.rmwr-tabs-content-wrapper {
+    position: relative;
+}
+
+.rmwr-tab-content {
+    display: none;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.rmwr-tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rmwr-section {
+    margin: 0;
+}
+
+/* Form Tables */
+.rmwr-settings-form .form-table {
+    margin-top: 0;
+}
+
+.rmwr-settings-form .form-table th {
+    padding: 20px 10px 20px 0;
+    width: 200px;
+    vertical-align: top;
+    font-weight: 500;
+}
+
+.rmwr-settings-form .form-table td {
+    padding: 15px 10px;
+    vertical-align: top;
+}
+
+/* Pro Field Styling */
+.rmwr-field-pro {
+    position: relative;
+    opacity: 0.7;
+}
+
+.rmwr-field-pro input,
+.rmwr-field-pro select {
+    background-color: #f6f7f7;
+    cursor: not-allowed;
+}
+
+.rmwr-field-pro input:disabled,
+.rmwr-field-pro select:disabled {
+    opacity: 0.6;
+}
+
+.rmwr-pro-badge-inline {
+    display: inline-block;
+    background: #d63638;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 7px;
+    border-radius: 3px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+/* Pro Section Header */
+.rmwr-pro-section-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.rmwr-pro-section-header .description {
+    color: #fff;
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+.rmwr-pro-section-header .rmwr-upgrade-button {
+    background: #fff;
+    color: #667eea;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.rmwr-pro-section-header .rmwr-upgrade-button:hover {
+    background: #f0f0f1;
+    color: #50575e;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+/* Sidebar Widgets */
+.rmwr-sidebar-widget {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.rmwr-sidebar-widget h3 {
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    font-weight: 600;
+    color: #23282d;
+}
+
+.rmwr-sidebar-widget p {
+    margin: 10px 0;
+    font-size: 13px;
+    color: #646970;
+}
+
+/* Upgrade Box */
+.rmwr-upgrade-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: none;
+}
+
+.rmwr-upgrade-box h3,
+.rmwr-upgrade-box .rmwr-upgrade-header h3 {
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.3);
+}
+
+.rmwr-upgrade-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.rmwr-upgrade-header .dashicons-star-filled {
+    color: #ffd700;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.rmwr-upgrade-content {
+    color: #fff;
+}
+
+.rmwr-upgrade-content p {
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 15px;
+}
+
+.rmwr-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.rmwr-feature-list li {
+    padding: 8px 0;
+    color: rgba(255,255,255,0.95);
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.rmwr-feature-list li:last-child {
+    border-bottom: none;
+}
+
+.rmwr-upgrade-button {
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    color: #667eea;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.rmwr-upgrade-button:hover {
+    background: #f0f0f1;
+    color: #50575e;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    transform: translateY(-1px);
+}
+
+/* Code Block */
+.rmwr-code-block {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.rmwr-code-block code {
+    background: transparent;
+    color: #4ec9b0;
+    padding: 0;
+    border: none;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Save Button */
+.rmwr-save-button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 14px;
+    height: auto;
+}
+
+/* Responsive */
+@media screen and (max-width: 1200px) {
+    .rmwr-settings-container {
+        flex-direction: column;
+    }
+    
+    .rmwr-sidebar {
+        width: 100%;
+    }
+    
+    .rmwr-sidebar-widget {
+        display: inline-block;
+        width: calc(50% - 10px);
+        vertical-align: top;
+        margin-right: 20px;
+    }
+    
+    .rmwr-sidebar-widget:last-child {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .rmwr-tab-nav {
+        flex-direction: column;
+    }
+    
+    .rmwr-tab {
+        border-bottom: 1px solid #c3c4c7;
+        border-left: 3px solid transparent;
+    }
+    
+    .rmwr-tab.active {
+        border-left-color: #2271b1;
+        border-bottom-color: #c3c4c7;
+    }
+    
+    .rmwr-sidebar-widget {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    .rmwr-settings-form .form-table th {
+        width: 100%;
+        display: block;
+        padding-bottom: 5px;
+    }
+    
+    .rmwr-settings-form .form-table td {
+        display: block;
+        padding-top: 0;
+        padding-left: 0;
+    }
+}
+
+/* Field Wrapper */
+.rmwr-field-wrapper {
+    position: relative;
+}
+
+.rmwr-field-wrapper .description {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #646970;
+    line-height: 1.5;
+}
+
+/* Color Picker Fix */
+.rmwr-field-wrapper .wp-color-picker {
+    width: 80px;
+    height: 30px;
+}
+
+/* Notice Styling */
+.rmwr-notice {
+    margin: 20px 0;
+}
+
+/* Input Focus States */
+.rmwr-settings-form input:not(:disabled):focus,
+.rmwr-settings-form select:not(:disabled):focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: 2px solid transparent;
+}
+
+/* Disabled Input Styling */
+.rmwr-settings-form input:disabled,
+.rmwr-settings-form select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Helper Text Links */
+.rmwr-field-wrapper .description a {
+    color: #2271b1;
+    text-decoration: none;
+}
+
+.rmwr-field-wrapper .description a:hover {
+    text-decoration: underline;
+}
+
+/* Pro Badge in Helper */
+.rmwr-field-wrapper .description strong a {
+    color: #d63638 !important;
+    font-weight: 600;
+}
