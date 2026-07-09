@@ -1,0 +1,299 @@
+/**
+ * Read More Without Refresh Pro - Frontend styles (v5.0)
+ *
+ * Base widget styles plus: truncate teaser, Table of Contents, collapsible
+ * sections, content locker, teaser paywall, engaged CTA and AI summary box.
+ * Button colors/typography come from the dynamic inline CSS (settings).
+ */
+
+/* ------------------------------- Base ------------------------------- */
+
+.read-link {
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none !important;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.read_div {
+    margin-top: 10px;
+}
+
+.rmwr-icon {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.rmwr-accordion-item {
+    margin-bottom: 10px;
+}
+
+.rmwr-teaser {
+    display: inline;
+}
+
+.rmwr-ellipsis {
+    opacity: 0.7;
+}
+
+/* --------------------------- Expand all ----------------------------- */
+
+.rmwr-toggle-all {
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 0.9em;
+    margin: 8px 0;
+}
+
+/* ------------------------ Table of Contents ------------------------- */
+
+.rmwr-toc {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 0 0 20px;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.rmwr-toc-title {
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.rmwr-toc ol {
+    margin: 0 0 0 18px;
+    padding: 0;
+}
+
+.rmwr-toc li {
+    margin: 4px 0;
+}
+
+/* ------------------------ Collapsible sections ---------------------- */
+
+.rmwr-sec-title {
+    margin-bottom: 0;
+}
+
+.rmwr-sec-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 10px 4px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: inherit;
+    color: inherit;
+    text-align: left;
+}
+
+.rmwr-sec-btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.rmwr-sec-icon::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    margin-left: 10px;
+}
+
+.rmwr-sec-btn[aria-expanded="true"] .rmwr-sec-icon::before {
+    transform: rotate(-135deg);
+}
+
+.rmwr-sec-panel {
+    padding: 10px 4px 16px;
+}
+
+/* --------------------------- Content locker ------------------------- */
+
+.rmwr-lock-box {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 12px;
+    background: rgba(0, 0, 0, 0.02);
+    max-width: 480px;
+}
+
+.rmwr-lock-title {
+    font-weight: 700;
+    font-size: 1.05em;
+    margin: 0 0 6px;
+}
+
+.rmwr-lock-message {
+    margin: 0 0 12px;
+}
+
+.rmwr-lock-form .rmwr-lock-email {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font: inherit;
+}
+
+.rmwr-lock-consent {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+}
+
+.rmwr-lock-submit {
+    padding: 8px 18px;
+}
+
+.rmwr-lock-error {
+    color: #c0392b;
+    font-size: 0.85em;
+    margin: 8px 0 0;
+}
+
+.rmwr-share-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.rmwr-share-btn {
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 8px 14px;
+    background: #fff;
+    font: inherit;
+    font-size: 0.9em;
+}
+
+.rmwr-share-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* --------------------------- Teaser paywall ------------------------- */
+
+.rmwr-paywall-teaser {
+    position: relative;
+    overflow: hidden;
+}
+
+.rmwr-paywall-hard .rmwr-paywall-teaser {
+    max-height: none;
+}
+
+.rmwr-paywall-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 90px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 90%);
+    pointer-events: none;
+}
+
+.rmwr-paywall-cta {
+    text-align: center;
+    padding: 14px 0 4px;
+}
+
+.rmwr-paywall-msg {
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.rmwr-paywall-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 4px;
+}
+
+/* ----------------------------- CTA box ------------------------------ */
+
+.rmwr-cta-box {
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 16px 40px 16px 16px;
+    margin: 14px 0;
+    background: rgba(0, 0, 0, 0.02);
+    animation: rmwr-cta-in 0.35s ease;
+}
+
+@keyframes rmwr-cta-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.rmwr-cta-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    border: 0;
+    background: transparent;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.6;
+}
+
+.rmwr-cta-close:hover {
+    opacity: 1;
+}
+
+/* --------------------------- AI summary box ------------------------- */
+
+.rmwr-ai-summary {
+    border-left: 4px solid rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 0 0 14px;
+}
+
+.rmwr-ai-label {
+    display: inline-block;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 4px;
+}
+
+.rmwr-ai-text {
+    margin: 0;
+}
+
+/* --------------------------- Lazy placeholder ----------------------- */
+
+.rmwr-lazy-placeholder,
+.rmwr-loading {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}

@@ -1,0 +1,321 @@
+/**
+ * Read More Without Refresh Pro - Button Templates
+ * 
+ * @package ReadMoreWithoutRefreshPro
+ * @version 4.0.0
+ */
+
+/* Template 1: Modern Blue */
+.rmwr-template-modern-blue .read-link {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.rmwr-template-modern-blue .read-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Template 2: Classic Underline */
+.rmwr-template-classic-underline .read-link {
+    background: transparent;
+    color: #2271b1;
+    padding: 8px 0;
+    border-bottom: 2px solid #2271b1;
+    border-radius: 0;
+    font-weight: 500;
+}
+
+.rmwr-template-classic-underline .read-link:hover {
+    color: #135e96;
+    border-bottom-color: #135e96;
+}
+
+/* Template 3: Rounded Gradient */
+.rmwr-template-rounded-gradient .read-link {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    font-weight: 500;
+}
+
+.rmwr-template-rounded-gradient .read-link:hover {
+    transform: scale(1.05);
+}
+
+/* Template 4: Minimalist */
+.rmwr-template-minimalist .read-link {
+    background: transparent;
+    color: #333;
+    padding: 5px 0;
+    border: none;
+    border-bottom: 1px dotted #ccc;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.rmwr-template-minimalist .read-link:hover {
+    border-bottom-style: solid;
+    color: #000;
+}
+
+/* Template 5: Bold Button */
+.rmwr-template-bold-button .read-link {
+    background: #000;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 4px;
+    border: 2px solid #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.rmwr-template-bold-button .read-link:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Template 6: Soft Shadow */
+.rmwr-template-soft-shadow .read-link {
+    background: #fff;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-weight: 500;
+}
+
+.rmwr-template-soft-shadow .read-link:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+/* Template 7: Outline Style */
+.rmwr-template-outline-style .read-link {
+    background: transparent;
+    color: #2271b1;
+    padding: 10px 24px;
+    border-radius: 4px;
+    border: 2px solid #2271b1;
+    font-weight: 500;
+}
+
+.rmwr-template-outline-style .read-link:hover {
+    background: #2271b1;
+    color: #fff;
+}
+
+/* Template 8: Filled Primary */
+.rmwr-template-filled-primary .read-link {
+    background: #2271b1;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: none;
+    font-weight: 500;
+}
+
+.rmwr-template-filled-primary .read-link:hover {
+    background: #135e96;
+}
+
+/* Template 9: Ghost Button */
+.rmwr-template-ghost-button .read-link {
+    background: rgba(255,255,255,0.1);
+    color: #2271b1;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(34,113,177,0.3);
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.rmwr-template-ghost-button .read-link:hover {
+    background: rgba(34,113,177,0.1);
+    border-color: #2271b1;
+}
+
+/* Template 10: Pill Shape */
+.rmwr-template-pill-shape .read-link {
+    background: #2271b1;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 500;
+}
+
+.rmwr-template-pill-shape .read-link:hover {
+    background: #135e96;
+    transform: scale(1.05);
+}
+
+/* Template 11: Flat Design */
+.rmwr-template-flat-design .read-link {
+    background: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 0;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.rmwr-template-flat-design .read-link:hover {
+    background: #2980b9;
+}
+
+/* Template 12: 3D Effect */
+.rmwr-template-3d-effect .read-link {
+    background: #e74c3c;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 0 #c0392b, 0 6px 0 rgba(0,0,0,0.1);
+    transition: all 0.1s ease;
+}
+
+.rmwr-template-3d-effect .read-link:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #c0392b, 0 4px 0 rgba(0,0,0,0.1);
+}
+
+.rmwr-template-3d-effect .read-link:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #c0392b;
+}
+
+/* Template 13: Glassmorphism */
+.rmwr-template-glassmorphism .read-link {
+    background: rgba(255,255,255,0.2);
+    color: #333;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.rmwr-template-glassmorphism .read-link:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Template 14: Neon Glow */
+.rmwr-template-neon-glow .read-link {
+    background: transparent;
+    color: #0ff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 2px solid #0ff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    box-shadow: 0 0 10px #0ff, inset 0 0 10px #0ff;
+}
+
+.rmwr-template-neon-glow .read-link:hover {
+    box-shadow: 0 0 20px #0ff, 0 0 30px #0ff, inset 0 0 20px #0ff;
+}
+
+/* Template 15: Vintage Style */
+.rmwr-template-vintage-style .read-link {
+    background: #d4af37;
+    color: #2c1810;
+    padding: 10px 20px;
+    border-radius: 0;
+    border: 2px solid #8b6914;
+    font-weight: 600;
+    font-family: 'Times New Roman', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.rmwr-template-vintage-style .read-link:hover {
+    background: #c19b26;
+}
+
+/* Template 16: Corporate Blue */
+.rmwr-template-corporate-blue .read-link {
+    background: #1e3a5f;
+    color: #fff;
+    padding: 11px 22px;
+    border-radius: 3px;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.rmwr-template-corporate-blue .read-link:hover {
+    background: #2a4f7a;
+}
+
+/* Template 17: Playful Yellow */
+.rmwr-template-playful-yellow .read-link {
+    background: #ffc107;
+    color: #333;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 0 #ff8f00;
+}
+
+.rmwr-template-playful-yellow .read-link:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #ff8f00;
+}
+
+/* Template 18: Elegant Purple */
+.rmwr-template-elegant-purple .read-link {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 11px 28px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.rmwr-template-elegant-purple .read-link:hover {
+    filter: brightness(1.1);
+}
+
+/* Template 19: Nature Green */
+.rmwr-template-nature-green .read-link {
+    background: #27ae60;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+
+.rmwr-template-nature-green .read-link:hover {
+    background: #229954;
+    transform: scale(1.05);
+}
+
+/* Template 20: Custom (Default styling applies) */
+.rmwr-template-custom .read-link {
+    /* Custom styles can be added via CSS */
+}

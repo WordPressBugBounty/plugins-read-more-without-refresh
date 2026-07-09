@@ -1,351 +1,245 @@
 === Read More Without Refresh ===
 Contributors: gkouvousisg
 Donate link: https://8web.gr/en/
-Tags: modal, read more, expand, collapse, seo
-Requires at least: 3.0.1
+Tags: read more, read less, accordion, faq, expand, collapse, content locker, paywall, seo, accessibility
+Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 4.0.0
+Requires PHP: 7.4
+Stable tag: 4.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Expand hidden content without page refresh. SEO-friendly, crawlable by search engines and easy to use.
+Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, now with accordion/FAQ schema, content locker, teaser paywall, AI summaries and real analytics.
 
 == Description ==
 
-<p>Introducing the <strong>Read More Without Refresh WordPress plugin v4.0.0</strong> – <strong>your key to elevating user experience on your website</strong>. 🚀</p>
+<p>Introducing the <strong>Read More Without Refresh WordPress plugin v4.1.0</strong> - your key to elevating user experience <strong>and SEO</strong> on your website. 🚀</p>
 
-<p>Say goodbye to the cumbersome page reloads that disrupt seamless content exploration. With our plugin, readers can now effortlessly access more of your valuable content without any interruptions and <strong>boost your SEO!</strong></p>
+<p>Say goodbye to clunky page reloads that break content exploration. Your readers expand your valuable content instantly, with no interruption, while <strong>every hidden word stays 100% crawlable by search engines</strong>. A win for both visitors and Google.</p>
 
-<p><strong>🎉 Version 4.0.0 - Major Update!</strong> This release brings a complete UI overhaul, new free features, and showcases all 30+ Pro features so you know exactly what you're getting when you upgrade!</p>
+<p><strong>🎉 Version 4.1.0 is our biggest release yet.</strong> On top of the classic toolkit, the PRO version now adds a full growth suite: content locker, teaser paywall, AI summaries, a real analytics dashboard, A/B testing, sitewide automation and reusable content blocks.</p>
 
-<h4>✨ New in v4.0.0 (Free Version):</h4>
+<h4>✨ Free Version Features:</h4>
 <ul>
-  <li>
-    <strong>Smooth Scroll</strong>: Automatically scrolls to expanded content for better user experience
-  </li>
-  <br>
-  <li>
-    <strong>Print Optimization</strong>: All content automatically expands when printing - perfect for readers who want to print your articles
-  </li>
-  <br>
-  <li>
-    <strong>Modern UI</strong>: Beautiful tabbed interface with better organization and user experience
-  </li>
-  <br>
-  <li>
-    <strong>Feature Transparency</strong>: See all Pro features in settings (disabled) so you know exactly what you're getting with Pro
-  </li>
-  <br>
-  <li>
-    <strong>Enhanced Security</strong>: Zero inline JavaScript, comprehensive sanitization, enterprise-grade security
-  </li>
-  <br>
-  <li>
-    <strong>Better Accessibility</strong>: Full ARIA support, keyboard navigation, screen reader optimized
-  </li>
+  <li><strong>Instant Read More / Read Less</strong> - smooth expand and collapse with no page refresh</li>
+  <li><strong>100% SEO-friendly</strong> - all hidden content stays in the initial HTML and is fully crawlable</li>
+  <li><strong>Smooth Scroll</strong> - automatically scrolls to the expanded content</li>
+  <li><strong>Print Optimization</strong> - all content auto-expands when a reader prints the page</li>
+  <li><strong>Customizable button</strong> - colors, borders, padding and font weight to match your brand</li>
+  <li><strong>Modern tabbed settings UI</strong> - clean, organized and fully responsive</li>
+  <li><strong>Gutenberg compatible</strong> - and works with any page builder that renders shortcodes</li>
+  <li><strong>Full accessibility</strong> - ARIA support, keyboard navigation (Enter and Space), screen-reader friendly</li>
+  <li><strong>Enterprise security</strong> - zero inline JavaScript and comprehensive sanitization</li>
 </ul>
 
-<h4>Key Features:</h4>
-<ul>
-  <li>
-    <strong>Instant Content Expansion</strong>: Enjoy a smooth 'Read More' transition without the need for page refreshes. Keep your visitors engaged and immersed in your content effortlessly.
-  </li>
-  <br>
-  <li>
-    <strong>Enhanced User Engagement</strong>: Reduce bounce rates and keep visitors on your site longer by providing a frictionless reading experience. The Read More Without Refresh plugin ensures your content flows seamlessly, creating a positive impression on your audience.
-  </li>
-  <br>
-  <li>
-    <strong>SEO-Friendly Design</strong>: Our plugin is crafted with SEO in mind. Maintain optimal search engine visibility while providing an enhanced reading experience for your audience. A win-win for both search engines and site visitors. All hidden content is 100% crawlable by search engines!
-  </li>
-  <br>
-  <li>
-    <strong>Smooth Animations</strong>: Professional fade animations make content expansion feel natural and polished.
-  </li>
-  <br>
-  <li>
-    <strong>Keyboard Accessible</strong>: Full keyboard navigation support (Enter/Space keys) for accessibility compliance.
-  </li>
-  <br>
-  <li>
-    <strong>Customizable Styling</strong>: Change button colors, borders, padding, and font weight to match your brand.
-  </li>
-  <br>
-  <li>
-    <strong>Gutenberg Compatible</strong>: Works seamlessly in the WordPress block editor.
-  </li>
-</ul>
-
-<p>It works via a shortcode and can be placed everywhere and you can style its colors through its settings menu. Feel free to try its frontend demo <strong><a target="_blank" href="https://apps.8web.gr/demos/wordpress-read-more-without-refresh-plugin/">here</a></strong>, to take a look at this <a target="_blank" href="https://youtu.be/uBKMmvFgqqg" alt="read more without refresh plugin">YouTube videocast</a> or to verify its <strong><a target="_blank" href="https://apps.8web.gr/demos/rmwr-gutenberg.gif" rel="nofollow ugc">Gutenberg compatibility</a></strong>.</p>
+<p>It works via a simple shortcode and can be placed everywhere. Try the frontend demo <strong><a target="_blank" href="https://apps.8web.gr/demos/wordpress-read-more-without-refresh-plugin/">here</a></strong>, watch this <a target="_blank" href="https://youtu.be/uBKMmvFgqqg" alt="read more without refresh plugin">YouTube videocast</a>, or check its <strong><a target="_blank" href="https://apps.8web.gr/demos/rmwr-gutenberg.gif" rel="nofollow ugc">Gutenberg compatibility</a></strong>.</p>
 
 <p><strong>Simple Shortcode Usage:</strong> <code>[read more] Your long text [/read]</code></p>
 
 <p></p>
-<h4>🚀 PRO VERSION AVAILABLE - 30+ Premium Features!</h4>
-<p>
-  <strong>
-    <a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Check out the PRO VERSION</a>
-    <img draggable="false" role="img" class="emoji" alt="👉" src="https://s.w.org/images/core/emoji/14.0.0/svg/1f449.svg">
-  </strong>
-</p>
+<h4>🚀 PRO VERSION - the complete content-expansion and growth toolkit</h4>
+<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get the PRO version</a></strong> and turn a simple "Read More" into a lead-generation, monetization and analytics machine. 40+ premium features, one affordable price.</p>
 
-<p><strong>Unlock 30+ Premium Features with the PRO Version</strong>: <img draggable="false" role="img" class="emoji" alt="🚀" src="https://s.w.org/images/core/emoji/14.0.0/svg/1f680.svg"> Upgrade to the Read More Without Refresh PRO version for an even more powerful toolkit to boost your website's performance.</p>
-
-<h4>🎯 FEATURES OF PRO VERSION (v4.0.0):</h4>
-
-<h5>🎨 Design & Styling:</h5>
+<h4>🔥 New in v4.1.0 (PRO) - ranked by impact:</h4>
 <ul>
-  <li>
-    <strong>20 Button Templates</strong>
-    <br>Choose from 20 pre-designed professional button styles. One-click application, no CSS knowledge needed. Styles include Modern Blue, Classic Underline, Rounded Gradient, Minimalist, Bold Button, Soft Shadow, Outline Style, Glassmorphism, Neon Glow, and more!
-  </li>
-  <br>
-  <li>
-    <strong>9 Animation Types</strong>
-    <br>Fade, slide, flip, zoom, bounce, rotate, scale, elastic animations with customizable duration (0-2000ms). Make your content expansion stand out!
-  </li>
-  <br>
-  <li>
-    <strong>Font Awesome Icons</strong>
-    <br>Full Font Awesome 6.4.0 library access - 6,000+ icons available. Add icons to your buttons for better visual appeal.
-  </li>
-  <br>
-  <li>
-    <strong>Google Fonts Integration</strong>
-    <br>10+ pre-configured Google Fonts (Roboto, Open Sans, Lato, Montserrat, Poppins, Raleway, Oswald, and more). Automatic loading and integration.
-  </li>
-  <br>
-  <li>
-    <strong>Advanced Styling</strong>
-    <br>Gradients, advanced typography controls (font size, line height, letter spacing, text transform), border radius, and more styling options.
-  </li>
+  <li><strong>🔒 Content Locker</strong> - readers unlock hidden content with an email or a social share. Built-in Mailchimp, Brevo, MailPoet and webhook integrations, with leads stored locally. Turn your best content into a list-building engine.</li>
+  <li><strong>🤖 AI Summaries (TL;DR)</strong> - auto-generate a concise summary of any post using your own OpenAI, Claude or Gemini key. Generated once per post, never per visitor, so it never runs up your API bill.</li>
+  <li><strong>💳 Teaser Paywall</strong> - fade out content for non-members with a "continue reading" prompt. Soft (SEO-safe) or hard mode.</li>
+  <li><strong>📊 Real Analytics Dashboard</strong> - per-page and per-button clicks, unlocks, leads and CTA conversions, a daily trend, date ranges and CSV export. Cache-proof tracking that works with WP Rocket and Cloudflare.</li>
+  <li><strong>🧪 A/B Testing</strong> - test up to 5 button texts and apply the winning one with a single click.</li>
+  <li><strong>⚡ Auto-Apply</strong> - collapse long posts, pages, products and even WooCommerce category descriptions sitewide, with zero shortcodes.</li>
+  <li><strong>📑 Auto-Collapse Sections + Table of Contents</strong> - turn every H2/H3 into an accordion with an automatic table of contents and deep links (Wikipedia mode).</li>
+  <li><strong>♻️ Global Content Blocks</strong> - write shipping, size or returns info once and reuse it across hundreds of pages: <code>[read block="shipping-info"]</code>.</li>
+  <li><strong>🎯 Engaged-User CTA</strong> - show an offer the moment a reader expands content, with tracked conversions.</li>
+  <li><strong>🧱 Gutenberg InnerBlocks Block</strong> - hide ANY blocks (images, galleries, embeds), not just text.</li>
+  <li><strong>🧩 Native Elementor Widget</strong> - full live-preview controls, no shortcodes.</li>
+  <li><strong>✂️ Truncate Mode</strong> - <code>[read limit="80"]</code> shows the first 80 words and hides the rest, HTML-safe.</li>
+  <li><strong>🔐 GDPR Mode</strong> - zero external font and CDN requests for privacy-first sites.</li>
 </ul>
 
-<h5>🎯 Content Features:</h5>
+<h4>🎨 Classic PRO features (all still included):</h4>
 <ul>
-  <li>
-    <strong>Accordion/FAQ Mode</strong>
-    <br>Perfect for FAQs and product details. Auto-collapsing accordion groups with Schema.org markup for SEO. Use <code>[read mode="accordion" accordion_id="faq1"]</code> for organized content sections.
-  </li>
-  <br>
-  <li>
-    <strong>Conditional Display Rules</strong>
-    <br>Time-based, scroll-triggered, device-filter, and role-based content display. Perfect for personalization. Show content after X seconds, on scroll, or for specific user roles.
-  </li>
-  <br>
-  <li>
-    <strong>Lazy Loading</strong>
-    <br>Load content via AJAX only when expanded. Significantly improves page load times and performance.
-  </li>
-  <br>
-  <li>
-    <strong>Dynamic Shortcode Texts</strong>
-    <br>Customize button text per instance: <code>[read open="Show" close="Hide"]</code> content <code>[/read]</code>
-  </li>
-  <br>
-  <li>
-    <strong>Custom Static IDs</strong>
-    <br>Set your own meaningful IDs for better tracking: <code>[read id="product-details"]</code>
-  </li>
+  <li><strong>20 Button Templates</strong> - one-click professional styles (Modern Blue, Glassmorphism, Neon Glow and more), no CSS needed</li>
+  <li><strong>9 Animation Types</strong> - fade, slide, flip, zoom, bounce, rotate, scale and elastic, with customizable duration (0-2000ms)</li>
+  <li><strong>Accordion / FAQ Mode</strong> - with valid FAQPage schema for rich results in Google: <code>[read mode="accordion" accordion_id="faq1"]</code></li>
+  <li><strong>Conditional Display Rules</strong> - time-based, scroll-triggered, device-filter and role-based content</li>
+  <li><strong>Font Awesome Icons</strong> (6,000+) and <strong>Google Fonts</strong> integration</li>
+  <li><strong>Advanced Styling</strong> - gradients, typography controls (size, line height, letter spacing, transform) and border radius</li>
+  <li><strong>Lazy Loading</strong> - load heavy hidden content only when it is expanded, for faster initial page loads</li>
+  <li><strong>GA4 and Custom Events</strong> - fires a GA4 event automatically when gtag is present, and dispatches <code>rmwr:expand</code> JavaScript events you can hook into GTM or your own scripts</li>
+  <li><strong>Deep Linking, Remember State</strong> and an <strong>Expand/Collapse All</strong> button (<code>[read_all]</code>)</li>
+  <li><strong>Settings Import/Export</strong> - perfect for agencies rolling out to many sites</li>
 </ul>
 
-<h5>📊 Analytics & Tracking:</h5>
-<ul>
-  <li>
-    <strong>Advanced Analytics Dashboard</strong>
-    <br>Full analytics submenu with click tracking, engagement rates, top clicked instances, and CSV export. Know exactly what content engages your users!
-  </li>
-  <br>
-  <li>
-    <strong>Google Analytics Integration</strong>
-    <br>Track read more clicks with GA4 and Universal Analytics. Monitor user engagement and optimize your content strategy.
-  </li>
-</ul>
-
-<h5>🔧 Advanced Features:</h5>
-<ul>
-  <li>
-    <strong>Gutenberg Block Editor</strong>
-    <br>Full-featured visual block with all Pro features available in the editor. No need to remember shortcode syntax!
-  </li>
-  <br>
-  <li>
-    <strong>Schema.org Markup</strong>
-    <br>Automatic FAQPage schema for SEO boost in search results. Better visibility in Google search!
-  </li>
-  <br>
-  <li>
-    <strong>Smooth Scroll Configuration</strong>
-    <br>Customizable scroll offset (0-500px) perfect for fixed headers. Fine-tune the user experience.
-  </li>
-</ul>
-
-<h5>📋 Feature Comparison:</h5>
-
-<p><strong>Core Features (Available in Both Versions):</strong></p>
+<h5>📋 Free vs PRO:</h5>
+<p><strong>Included in both versions:</strong></p>
 <ul>
   <li><strong>Basic Show/Hide</strong> - ✅ Free | ✅ Pro</li>
-  <li><strong>Custom Colors & Styling</strong> - ✅ Free | ✅ Pro</li>
-  <li><strong>Smooth Scroll</strong> - ✅ Free | ✅ Pro</li>
+  <li><strong>Custom Colors and Styling</strong> - ✅ Free (basic) | ✅ Pro (advanced)</li>
+  <li><strong>Smooth Scroll</strong> - ✅ Free | ✅ Pro (configurable offset)</li>
   <li><strong>Print Optimization</strong> - ✅ Free | ✅ Pro</li>
-  <li><strong>Fade Animation</strong> - ✅ Free | ✅ Pro</li>
+  <li><strong>Fade Animation</strong> - ✅ Free | ✅ Pro (9 animation types)</li>
 </ul>
-
-<p><strong>Pro-Only Features:</strong></p>
+<p><strong>PRO-only:</strong></p>
 <ul>
-  <li><strong>20 Button Templates</strong> - 👁️ Free (visible but disabled) | ✅ Pro (fully active)</li>
-  <li><strong>9 Animation Types</strong> - 👁️ Free (visible but disabled) | ✅ Pro (fade, slide, flip, zoom, bounce, rotate, scale, elastic)</li>
-  <li><strong>Accordion/FAQ Mode</strong> - 👁️ Free (visible but disabled) | ✅ Pro (with Schema.org markup)</li>
-  <li><strong>Conditional Display Rules</strong> - 👁️ Free (visible but disabled) | ✅ Pro (time-based, scroll-triggered, device-filter, role-based)</li>
-  <li><strong>Analytics Dashboard</strong> - 👁️ Free (visible but disabled) | ✅ Pro (full dashboard with CSV export)</li>
-  <li><strong>Lazy Loading</strong> - 👁️ Free (visible but disabled) | ✅ Pro (AJAX content loading)</li>
-  <li><strong>Font Awesome Icons (6,000+)</strong> - 👁️ Free (visible but disabled) | ✅ Pro (full Font Awesome 6.4.0 library)</li>
-  <li><strong>Google Fonts Integration</strong> - 👁️ Free (visible but disabled) | ✅ Pro (10+ pre-configured fonts)</li>
-  <li><strong>Advanced Typography</strong> - 👁️ Free (visible but disabled) | ✅ Pro (font size, line height, letter spacing, text transform)</li>
-  <li><strong>Gradient Backgrounds</strong> - 👁️ Free (visible but disabled) | ✅ Pro (CSS gradient support)</li>
-  <li><strong>Google Analytics Integration</strong> - 👁️ Free (visible but disabled) | ✅ Pro (GA4 & Universal Analytics)</li>
-  <li><strong>Gutenberg Block Editor</strong> - 👁️ Free (visible but disabled) | ✅ Pro (full-featured visual block)</li>
-  <li><strong>Schema.org Markup</strong> - 👁️ Free (visible but disabled) | ✅ Pro (automatic FAQPage schema)</li>
-  <li><strong>Custom Static IDs</strong> - ❌ Free | ✅ Pro</li>
-  <li><strong>Per-Instance Text Override</strong> - ❌ Free | ✅ Pro</li>
+  <li><strong>Content Locker (email / social unlock)</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Teaser Paywall</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>AI Summaries (OpenAI / Claude / Gemini)</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Real Analytics Dashboard + CSV export</strong> - 👁️ Free (teaser) | ✅ Pro</li>
+  <li><strong>A/B Testing</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Auto-Apply (sitewide + WooCommerce categories)</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Auto-Collapse Sections + Table of Contents</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Global reusable Content Blocks</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>20 Button Templates</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>9 Animation Types</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Accordion/FAQ Mode with Schema</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Conditional Display Rules</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Font Awesome + Google Fonts</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Gutenberg InnerBlocks Block + Elementor Widget</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Truncate Mode + GDPR Mode</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Deep Linking, Remember State, Import/Export</strong> - ❌ Free | ✅ Pro</li>
 </ul>
-
-<p><em>👁️ = Visible in settings but disabled (Pro feature indicator) - See what you're getting with Pro!</em></p>
+<p><em>👁️ = shown in the free settings (disabled) so you can see exactly what PRO unlocks.</em></p>
 
 <p></p>
 <h4>Why Upgrade to PRO?</h4>
 <ul>
-  <li><strong>Professional Appearance</strong>: 20 pre-designed button templates make your site look polished instantly</li>
-  <br>
-  <li><strong>Better Analytics</strong>: Know what content engages users with comprehensive analytics dashboard and Google Analytics integration</li>
-  <br>
-  <li><strong>Advanced Features</strong>: Accordion mode, conditional display, lazy loading, and more for maximum flexibility</li>
-  <br>
-  <li><strong>Performance</strong>: Lazy loading reduces initial page load times significantly</li>
-  <br>
-  <li><strong>SEO Boost</strong>: Schema.org markup and better content organization improve search rankings</li>
-  <br>
-  <li><strong>Text Customization</strong>: Align the 'Read More' and 'Read Less' messages with your brand's messaging strategy for a cohesive user experience</li>
-  <br>
-  <li><strong>Priority Support</strong>: Enjoy priority assistance from our dedicated support team to ensure a smooth and hassle-free experience with the PRO features</li>
-  <br>
-  <li><strong>Value</strong>: 30+ premium features for one affordable price</li>
+  <li><strong>Capture leads</strong> - the content locker builds your email list from the content people already want to read</li>
+  <li><strong>Monetize</strong> - the teaser paywall gates premium content for members without hurting SEO</li>
+  <li><strong>Save hours</strong> - Auto-Apply collapses long content and WooCommerce category text sitewide with zero shortcodes</li>
+  <li><strong>Make data-driven decisions</strong> - a real analytics dashboard and A/B testing show what actually engages readers</li>
+  <li><strong>Rank better</strong> - accordion FAQ schema and a fully crawlable table of contents boost SEO</li>
+  <li><strong>Scale across sites</strong> - reusable global blocks and settings import/export are built for agencies and stores</li>
+  <li><strong>Priority Support</strong> - a dedicated team for PRO users</li>
 </ul>
 
-<p>Enhance your WordPress site today with the Read More Without Refresh plugin, and take it to the next level with the PRO version's advanced features. Elevate user satisfaction, improve SEO, and make your content shine!</p>
+<p>Enhance your WordPress site today with Read More Without Refresh, and take it to the next level with the PRO version. Elevate user satisfaction, capture leads, improve SEO, and make your content shine!</p>
 
-<p>
-  <strong>
-    <a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Check out the PRO VERSION</a>
-    <img draggable="false" role="img" class="emoji" alt="👉" src="https://s.w.org/images/core/emoji/14.0.0/svg/1f449.svg">
-  </strong>
-</p>
+<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get the PRO version now</a></strong></p>
 
 == Installation ==
 
-<p>All you have to do is upload the plugin within your Wordpress Plugins menu and activate it.</p>
-<p>Then, you can add the shortcode everywhere you want (pages, posts, widgets etc):</p>
+<p>All you have to do is upload the plugin within your WordPress Plugins menu and activate it.</p>
+<p>Then, add the shortcode anywhere you want (pages, posts, widgets, and more):</p>
 <p></p>
 <p><strong>[read more] Your hidden text here [/read]</strong></p>
 
-<p>You can, of course, change "<strong>Read more</strong>" and "<strong>Read less</strong>" texts to your preferred one, along with other settings in 'RMWF Settings' wp-admin menu page.</p>
-<p>In case that you have any support inquiries, feel free to contact us.</p>
+<p>You can, of course, change the "<strong>Read more</strong>" and "<strong>Read less</strong>" texts, along with every other setting, in the 'Read More Without Refresh' wp-admin menu page.</p>
+<p>If you have any support inquiries, feel free to contact us.</p>
 
 == Frequently Asked Questions ==
 
 = Is it compatible with every WordPress version? =
 
-<strong>Yes</strong> it is! Tested up to WordPress 6.9 and compatible with WordPress 3.0.1+.
-
-= What about Gutenberg compatibility? =
-
-<strong>Yes</strong> it works perfectly! The plugin is fully compatible with the WordPress block editor. In the Pro version, you get a full-featured Gutenberg block with visual settings.
-
-= Can I use multiple instances on the same page? =
-
-<strong>Yes</strong>! You can use unlimited instances of the shortcode on any page, post, or custom post type.
+<strong>Yes.</strong> Tested up to WordPress 6.9 and compatible with WordPress 5.8+ (PHP 7.4+).
 
 = Is the hidden content SEO-friendly? =
 
-<strong>Yes</strong>! All hidden content is 100% crawlable by search engines. The plugin is designed with SEO in mind.
+<strong>Yes.</strong> All hidden content renders in the initial HTML, so it is 100% crawlable by search engines. Only human visitors see it collapsed.
 
-= Does it work with page builders? =
+= What about Gutenberg and page builders? =
 
-<strong>Yes</strong>! The shortcode works with any page builder that supports shortcodes, including Elementor, Divi, WPBakery, and more.
+<strong>Fully supported.</strong> The shortcode works with any builder that renders shortcodes (Elementor, Divi, WPBakery and more). The PRO version adds a dedicated Gutenberg InnerBlocks block and a native Elementor widget.
+
+= Can I use multiple instances on the same page? =
+
+<strong>Yes.</strong> Use unlimited instances of the shortcode on any page, post or custom post type.
+
+= Does the analytics work with page caching (WP Rocket, Cloudflare)? =
+
+<strong>Yes.</strong> PRO analytics use a public REST endpoint with no nonces, so clicks are tracked correctly even on fully cached pages.
+
+= Do the AI summaries cost money per visitor? =
+
+<strong>No.</strong> A summary is generated once per post using your own API key. Visitors never trigger an API call.
+
+= Can I capture emails or lock content? =
+
+<strong>Yes, in PRO.</strong> The Content Locker asks for an email or a social share before revealing hidden content, and syncs leads to Mailchimp, Brevo, MailPoet or a webhook.
+
+= Does it work with WooCommerce? =
+
+<strong>Yes.</strong> PRO can auto-collapse long product descriptions and WooCommerce category (taxonomy) descriptions sitewide, and reusable global blocks let you show the same shipping, size or returns info across your whole catalog.
 
 = Can I customize the button appearance? =
 
-<strong>Yes</strong>! In the free version, you can customize colors, borders, padding, and font weight. The Pro version offers 20 button templates, Google Fonts, Font Awesome icons, gradients, and advanced typography controls.
+<strong>Yes.</strong> The free version customizes colors, borders, padding and font weight. PRO adds 20 button templates, Google Fonts, 6,000+ Font Awesome icons, gradients and advanced typography.
 
 = Does it work on mobile devices? =
 
-<strong>Yes</strong>! The plugin is fully responsive and works perfectly on all devices and screen sizes.
+<strong>Yes.</strong> The plugin is fully responsive and works on all devices and screen sizes.
 
 == Screenshots ==
 
-1. Read More button Deactivated
-2. Read More button Activated (after click)
-3. Wp-admin settings page (v4.0.0 - Modern UI)
-4. Pro Features visible in settings (v4.0.0)
-5. Analytics Dashboard (Pro version)
+1. Read More button (collapsed)
+2. Read More button (expanded after click)
+3. Modern tabbed settings page (v4.1.0)
+4. PRO features previewed in the free settings
+5. Real Analytics Dashboard (PRO)
+6. Content Locker - email to unlock (PRO)
+7. Teaser Paywall for members (PRO)
+8. Accordion / FAQ mode with Table of Contents (PRO)
 
 == Changelog ==
 
-= 0.1 =
-* Initial release.
+= 4.1.0 =
+* NEW (PRO): Content Locker - unlock content with an email or a social share, with Mailchimp / Brevo / MailPoet / webhook integrations and local leads storage.
+* NEW (PRO): Teaser Paywall for members, in soft (SEO-safe) and hard modes.
+* NEW (PRO): AI Summaries (TL;DR) generated once per post with your own OpenAI, Claude or Gemini key.
+* NEW (PRO): Real Analytics Dashboard - per-page and per-button clicks, unlocks, leads and CTA conversions, daily trend, date ranges and CSV export, with cache-proof REST tracking.
+* NEW (PRO): A/B testing of button texts with one-click winner apply.
+* NEW (PRO): Auto-Apply - collapse long content and WooCommerce category descriptions sitewide with zero shortcodes.
+* NEW (PRO): Auto-Collapse Sections with an automatic Table of Contents (Wikipedia mode).
+* NEW (PRO): Global reusable Content Blocks - [read block="slug"].
+* NEW (PRO): Engaged-user CTA with tracked conversions.
+* NEW (PRO): Gutenberg InnerBlocks block (hide any blocks) and a native Elementor widget.
+* NEW (PRO): Truncate mode ([read limit="80"]) and GDPR mode (no external fonts/CDN).
+* IMPROVED: fully redesigned, modern settings UI; assets load only on pages that use the plugin; no jQuery on the frontend.
+* FIXED: valid single FAQPage schema per page; role restriction is no longer bypassed for logged-out visitors; iframes and embeds are no longer stripped from hidden content.
 
-= 1.0 =
+= 4.0.0 =
+* Major release - complete feature overhaul and modern tabbed UI.
+* Smooth scroll and print optimization added to the free version.
+* Security improvements - zero inline JS, comprehensive sanitization.
+* Full ARIA support and keyboard navigation.
+* All PRO features previewed (disabled) in the free settings.
+
+= 3.4.0 =
+* Major code refactoring and security improvements.
+* Separated JavaScript from PHP (no more inline scripts).
+* Proper sanitization and validation for all settings.
+* Accessibility features (ARIA labels, keyboard navigation).
+* Basic fade animation support and nonce verification for AJAX requests.
+
+= 3.3.3 =
+* Code cleanup.
+
+= 3.3.1 =
+* Code cleanup.
+
+= 3.3 =
+* Code cleanup.
+
+= 3.2 =
+* Fixed potential security issues.
+
+= 3.1 =
+* Fixed reported warnings.
+
+= 3.0 =
+* Dynamic settings integrated.
+
+= 2.3 =
+* Warning fixes.
+
+= 2.2 =
 * Bug fixes.
 
 = 2.0 =
 * Compatibility fixes.
 
-= 2.2 =
+= 1.0 =
 * Bug fixes.
 
-= 2.3 =
-* Warning fixes.
-
-= 3.0 =
-* Dynamic settings integrated.
-
-= 3.1 =
-* Fixed reported warnings.
-
-= 3.2 =
-* Fixed potential security issues.
-
-= 3.3 =
-* Code Cleanup.
-
-= 3.3.1 =
-* Code Cleanup.
-
-= 3.3.3 =
-* Code Cleanup.
-
-= 4.0.0 =
-* 🎉 MAJOR RELEASE - Complete feature overhaul
-* ✅ Modern UI - Tabbed interface, beautiful sidebar, responsive design
-* ✅ All Pro Features Visible - See what's available in Pro (disabled in free)
-* ✅ Smooth Scroll - Auto-scroll to expanded content (Free feature)
-* ✅ Print Optimization - Auto-expand on print (Free feature)
-* ✅ Enhanced Animations - Basic fade animation (Free)
-* ✅ Security improvements - Zero inline JS, comprehensive sanitization
-* ✅ Accessibility - Full ARIA support, keyboard navigation
-* ✅ Code quality - Modern PHP, clean structure
-* ✅ Translation ready - Full text domain support
-* ✅ Feature Transparency - All Pro features shown in settings
-
-= 3.4.0 =
-* Major code refactoring and security improvements
-* Separated JavaScript from PHP (no more inline scripts)
-* Added proper sanitization and validation for all settings
-* Added accessibility features (ARIA labels, keyboard navigation)
-* Added basic fade animation support
-* Improved shortcode handler with better security
-* Added nonce verification for AJAX requests
-* Modernized JavaScript code with event delegation
-* Better code organization and maintainability
-* Translation ready with text domain
-* Fixed security vulnerabilities
+= 0.1 =
+* Initial release.

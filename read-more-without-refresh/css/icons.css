@@ -1,0 +1,105 @@
+/**
+ * Read More Without Refresh Pro - Icon Styles
+ * 
+ * @package ReadMoreWithoutRefreshPro
+ * @version 3.4.0
+ */
+
+.rmwr-icon {
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    position: relative;
+}
+
+/* Arrow Down Icon */
+.rmwr-icon-arrow-down::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%) rotate(45deg);
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+}
+
+/* Arrow Up Icon */
+.rmwr-icon-arrow-up::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%) rotate(-135deg);
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+}
+
+/* Chevron Down Icon */
+.rmwr-icon-chevron-down::before {
+    content: '▼';
+    font-size: 0.7em;
+}
+
+/* Chevron Up Icon */
+.rmwr-icon-chevron-up::before {
+    content: '▲';
+    font-size: 0.7em;
+}
+
+/* Plus Icon */
+.rmwr-icon-plus::before {
+    content: '+';
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Minus Icon */
+.rmwr-icon-minus::before {
+    content: '−';
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Icon animation when expanded */
+.read-link[aria-expanded="true"] .rmwr-icon-arrow-down::before {
+    transform: translate(-50%, -30%) rotate(225deg);
+}
+
+.read-link[aria-expanded="true"] .rmwr-icon-chevron-down::before {
+    transform: rotate(180deg);
+}
+
+/* Font Awesome Icon Support */
+.rmwr-icon-fa {
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.rmwr-icon-fa::before {
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Pro", "Font Awesome 6 Free", "Font Awesome 6 Pro";
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Common Font Awesome icons */
+.rmwr-icon-fa.fa-arrow-down::before { content: "\f063"; }
+.rmwr-icon-fa.fa-arrow-up::before { content: "\f062"; }
+.rmwr-icon-fa.fa-chevron-down::before { content: "\f078"; }
+.rmwr-icon-fa.fa-chevron-up::before { content: "\f077"; }
+.rmwr-icon-fa.fa-plus::before { content: "\f067"; }
+.rmwr-icon-fa.fa-minus::before { content: "\f068"; }
+.rmwr-icon-fa.fa-plus-circle::before { content: "\f055"; }
+.rmwr-icon-fa.fa-minus-circle::before { content: "\f056"; }
+.rmwr-icon-fa.fa-angle-down::before { content: "\f107"; }
+.rmwr-icon-fa.fa-angle-up::before { content: "\f106"; }
+.rmwr-icon-fa.fa-caret-down::before { content: "\f0d7"; }
+.rmwr-icon-fa.fa-caret-up::before { content: "\f0d8"; }
