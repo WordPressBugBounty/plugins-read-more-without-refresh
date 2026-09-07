@@ -1,11 +1,10 @@
 === Read More Without Refresh ===
 Contributors: gkouvousisg
-Donate link: https://8web.gr/en/
 Tags: read more, read less, accordion, faq, expand, collapse, content locker, paywall, seo, accessibility
 Requires at least: 5.8
-Tested up to: 6.9
+Tested up to: 7.0.1
 Requires PHP: 7.4
-Stable tag: 4.1.0
+Stable tag: 4.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,9 +16,14 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
 
 <p>Say goodbye to clunky page reloads that break content exploration. Your readers expand your valuable content instantly, with no interruption, while <strong>every hidden word stays 100% crawlable by search engines</strong>. A win for both visitors and Google.</p>
 
-<p><strong>🎉 Version 4.1.0 is our biggest release yet.</strong> On top of the classic toolkit, the PRO version now adds a full growth suite: content locker, teaser paywall, AI summaries, a real analytics dashboard, A/B testing, sitewide automation and reusable content blocks.</p>
+https://youtu.be/uBKMmvFgqqg
 
-<h4>✨ Free Version Features:</h4>
+<h3>Latest Update</h3>
+<p><strong>🎉 Version 4.1.0 is our biggest release yet.</strong> On top of the classic toolkit, the PRO version now adds a full growth suite: content locker, teaser paywall, AI summaries, a real analytics dashboard, A/B testing, sitewide automation and reusable content blocks:</p>
+
+https://youtu.be/bX4vgJWL7wM
+
+<h3>✨ Free Version Features:</h3>
 <ul>
   <li><strong>Instant Read More / Read Less</strong> - smooth expand and collapse with no page refresh</li>
   <li><strong>100% SEO-friendly</strong> - all hidden content stays in the initial HTML and is fully crawlable</li>
@@ -32,15 +36,12 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
   <li><strong>Enterprise security</strong> - zero inline JavaScript and comprehensive sanitization</li>
 </ul>
 
-<p>It works via a simple shortcode and can be placed everywhere. Try the frontend demo <strong><a target="_blank" href="https://apps.8web.gr/demos/wordpress-read-more-without-refresh-plugin/">here</a></strong>, watch this <a target="_blank" href="https://youtu.be/uBKMmvFgqqg" alt="read more without refresh plugin">YouTube videocast</a>, or check its <strong><a target="_blank" href="https://apps.8web.gr/demos/rmwr-gutenberg.gif" rel="nofollow ugc">Gutenberg compatibility</a></strong>.</p>
+It works via a simple shortcode and can be placed everywhere. You can try the Live demo <strong><a target="_blank" href="https://apps.8web.gr/demos/wordpress-read-more-without-refresh-plugin/">here</a></strong>.
 
 <p><strong>Simple Shortcode Usage:</strong> <code>[read more] Your long text [/read]</code></p>
 
-<p></p>
-<h4>🚀 PRO VERSION - the complete content-expansion and growth toolkit</h4>
-<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get the PRO version</a></strong> and turn a simple "Read More" into a lead-generation, monetization and analytics machine. 40+ premium features, one affordable price.</p>
-
-<h4>🔥 New in v4.1.0 (PRO) - ranked by impact:</h4>
+<h3>🚀 Pro Version (the complete content-expansion and growth toolkit):</h3>
+<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get it HERE</a></strong></p>
 <ul>
   <li><strong>🔒 Content Locker</strong> - readers unlock hidden content with an email or a social share. Built-in Mailchimp, Brevo, MailPoet and webhook integrations, with leads stored locally. Turn your best content into a list-building engine.</li>
   <li><strong>🤖 AI Summaries (TL;DR)</strong> - auto-generate a concise summary of any post using your own OpenAI, Claude or Gemini key. Generated once per post, never per visitor, so it never runs up your API bill.</li>
@@ -55,10 +56,6 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
   <li><strong>🧩 Native Elementor Widget</strong> - full live-preview controls, no shortcodes.</li>
   <li><strong>✂️ Truncate Mode</strong> - <code>[read limit="80"]</code> shows the first 80 words and hides the rest, HTML-safe.</li>
   <li><strong>🔐 GDPR Mode</strong> - zero external font and CDN requests for privacy-first sites.</li>
-</ul>
-
-<h4>🎨 Classic PRO features (all still included):</h4>
-<ul>
   <li><strong>20 Button Templates</strong> - one-click professional styles (Modern Blue, Glassmorphism, Neon Glow and more), no CSS needed</li>
   <li><strong>9 Animation Types</strong> - fade, slide, flip, zoom, bounce, rotate, scale and elastic, with customizable duration (0-2000ms)</li>
   <li><strong>Accordion / FAQ Mode</strong> - with valid FAQPage schema for rich results in Google: <code>[read mode="accordion" accordion_id="faq1"]</code></li>
@@ -71,7 +68,7 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
   <li><strong>Settings Import/Export</strong> - perfect for agencies rolling out to many sites</li>
 </ul>
 
-<h5>📋 Free vs PRO:</h5>
+<h3>📋 Free vs PRO:</h3>
 <p><strong>Included in both versions:</strong></p>
 <ul>
   <li><strong>Basic Show/Hide</strong> - ✅ Free | ✅ Pro</li>
@@ -101,8 +98,7 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
 </ul>
 <p><em>👁️ = shown in the free settings (disabled) so you can see exactly what PRO unlocks.</em></p>
 
-<p></p>
-<h4>Why Upgrade to PRO?</h4>
+<h3>Why Upgrade to PRO?</h3>
 <ul>
   <li><strong>Capture leads</strong> - the content locker builds your email list from the content people already want to read</li>
   <li><strong>Monetize</strong> - the teaser paywall gates premium content for members without hurting SEO</li>
@@ -115,23 +111,23 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
 
 <p>Enhance your WordPress site today with Read More Without Refresh, and take it to the next level with the PRO version. Elevate user satisfaction, capture leads, improve SEO, and make your content shine!</p>
 
-<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get the PRO version now</a></strong></p>
+<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get the PRO version »</a></strong></p>
 
 == Installation ==
 
-<p>All you have to do is upload the plugin within your WordPress Plugins menu and activate it.</p>
-<p>Then, add the shortcode anywhere you want (pages, posts, widgets, and more):</p>
+<p>All you have to do is to activate the module after downloading/applying it at your WordPress website.</p>
+<p>Simply add RMWR shortcode or Block anywhere you need it (pages, posts, widgets, and more), IE:</p>
 <p></p>
 <p><strong>[read more] Your hidden text here [/read]</strong></p>
 
-<p>You can, of course, change the "<strong>Read more</strong>" and "<strong>Read less</strong>" texts, along with every other setting, in the 'Read More Without Refresh' wp-admin menu page.</p>
-<p>If you have any support inquiries, feel free to contact us.</p>
+<p>You can configure the behavior of the plugin via its Settings page and browse all use cases.</p>
+<p>For support inquiries, please use the Support Forum.</p>
 
 == Frequently Asked Questions ==
 
 = Is it compatible with every WordPress version? =
 
-<strong>Yes.</strong> Tested up to WordPress 6.9 and compatible with WordPress 5.8+ (PHP 7.4+).
+<strong>Yes.</strong> Tested up to the last version of WordPress core and PHP.
 
 = Is the hidden content SEO-friendly? =
 
@@ -181,6 +177,9 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
 8. Accordion / FAQ mode with Table of Contents (PRO)
 
 == Changelog ==
+
+= 4.1.1 =
+* FIXED: the [read] and [read_all] shortcodes now work inside category, tag and attribute (taxonomy) descriptions. The frontend script is now loaded on those archive pages, so the button toggles correctly.
 
 = 4.1.0 =
 * NEW (PRO): Content Locker - unlock content with an email or a social share, with Mailchimp / Brevo / MailPoet / webhook integrations and local leads storage.

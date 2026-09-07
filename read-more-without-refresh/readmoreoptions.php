@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Read More Without Refresh
- * Version: 4.1.0
+ * Version: 4.1.1
  * Plugin URI: https://shop.8web.gr/read-more-without-refresh-pro/
  * Description: Boost your SEO without affecting user experience. Show/hide extra content on pages/posts/products and Custom Post Types - now with Content Locker, Teaser Paywall, AI Summaries, Auto-Apply rules, real Analytics, A/B testing and more.
  * Author: Eightweb Interactive
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('RMWR_PRO_VERSION', '4.1.0');
+define('RMWR_PRO_VERSION', '4.1.1');
 define('RMWR_PRO_FILE', __FILE__);
 define('RMWR_PRO_BASENAME', plugin_basename(__FILE__));
 define('RMWR_PRO_URL', plugin_dir_url(__FILE__));

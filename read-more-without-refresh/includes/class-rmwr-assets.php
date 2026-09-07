@@ -74,9 +74,16 @@ class RMWR_Assets {
             }
         }
 
-        // Taxonomy descriptions (e.g. WooCommerce category SEO text).
-        if ((is_category() || is_tag() || is_tax()) && RMWR_Auto_Apply::taxonomy_enabled()) {
-            self::$needed = true;
+        // Taxonomy descriptions: a [read]/[read_all] shortcode placed manually
+        // in the term description, or the Pro auto-apply taxonomy feature.
+        if (is_category() || is_tag() || is_tax()) {
+            $term = get_queried_object();
+            $desc = ($term instanceof WP_Term) ? (string) $term->description : '';
+            if (RMWR_Auto_Apply::taxonomy_enabled()
+                || has_shortcode($desc, 'read')
+                || has_shortcode($desc, 'read_all')) {
+                self::$needed = true;
+            }
         }
     }
 
