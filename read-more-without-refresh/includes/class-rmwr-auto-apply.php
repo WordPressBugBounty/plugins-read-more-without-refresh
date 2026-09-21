@@ -68,6 +68,11 @@ class RMWR_Auto_Apply {
             return false;
         }
 
+        // Paragraph and Smart (auto) modes both gate on paragraph count.
+        if ('words' !== self::mode()) {
+            return self::paragraph_count($post->post_content) > self::paragraph_threshold();
+        }
+
         return self::word_count($post->post_content) > self::word_threshold();
     }
 
@@ -82,6 +87,65 @@ class RMWR_Auto_Apply {
 
     public static function word_threshold() {
         return max(10, absint(get_option('rmwr_auto_apply_words', 100)));
+    }
+
+    /**
+     * Collapse mode for singular content: 'words' (keep the first N words) or
+     * 'paragraphs' (keep the first N paragraphs, Ad-Inserter style - e.g. keep
+     * 2 visible and collapse everything from the third paragraph onward).
+     *
+     * @return string 'words'|'paragraphs'
+     */
+    public static function mode() {
+        $mode = get_option('rmwr_auto_apply_mode', 'words');
+        return in_array($mode, array('words', 'paragraphs', 'auto'), true) ? $mode : 'words';
+    }
+
+    /**
+     * How many leading paragraphs stay visible in paragraph mode.
+     *
+     * @return int
+     */
+    public static function paragraph_threshold() {
+        return max(1, absint(get_option('rmwr_auto_apply_paragraphs', 2)));
+    }
+
+    /**
+     * Visible-content limit for the active mode (words or paragraphs).
+     *
+     * @return int
+     */
+    public static function current_limit() {
+        return 'paragraphs' === self::mode() ? self::paragraph_threshold() : self::word_threshold();
+    }
+
+    /**
+     * Count paragraphs in content. Handles both rendered HTML (<p> tags) and
+     * raw post content (blocks separated by blank lines, which wpautop later
+     * turns into paragraphs).
+     *
+     * @param string $content HTML or raw content.
+     * @return int
+     */
+    public static function paragraph_count($content) {
+        $text = trim((string) $content);
+        if ('' === $text) {
+            return 0;
+        }
+
+        $tags = preg_match_all('/<p[\s>]/i', $text);
+        if ($tags) {
+            return (int) $tags;
+        }
+
+        $blocks = preg_split('/\n\s*\n/', $text);
+        if (!is_array($blocks)) {
+            return 0;
+        }
+        $blocks = array_filter($blocks, static function ($block) {
+            return '' !== trim(wp_strip_all_tags($block));
+        });
+        return count($blocks);
     }
 
     /**
@@ -119,7 +183,7 @@ class RMWR_Auto_Apply {
             return $content;
         }
 
-        return $this->collapse($content, self::word_threshold());
+        return $this->collapse($content, self::current_limit(), self::mode(), $post);
     }
 
     /**
@@ -142,28 +206,111 @@ class RMWR_Auto_Apply {
             return $description;
         }
 
-        return $this->collapse($description, $threshold);
+        return $this->collapse($description, $threshold, 'words');
     }
 
     /**
      * Split content at the threshold and wrap the remainder in a Read More
      * instance rendered through the shared shortcode pipeline.
      *
-     * @param string $content   Full HTML.
-     * @param int    $threshold Visible word count.
+     * @param string $content Full HTML.
+     * @param int    $limit   Visible word or paragraph count.
+     * @param string $unit    'words' or 'paragraphs'.
      * @return string
      */
-    private function collapse($content, $threshold) {
-        list($visible, $hidden) = RMWR_Shortcode::split_html($content, $threshold, 'words');
+    private function collapse($content, $limit, $unit = 'words', $post = null) {
+        if ('auto' === $unit) {
+            list($visible, $hidden) = self::smart_split($content);
+        } else {
+            list($visible, $hidden) = RMWR_Shortcode::split_html($content, $limit, $unit);
+        }
 
         if ('' === trim(wp_strip_all_tags($hidden))) {
             return $content;
+        }
+
+        // Surface related posts inside the expanded area: internal links,
+        // more pageviews and dwell time, only for real posts.
+        if ($post instanceof WP_Post && self::related_enabled()) {
+            $hidden .= self::related_html($post);
         }
 
         $shortcode = RMWR_Pro::get_instance()->modules['shortcode'];
         $rendered  = $shortcode->render_internal(array(), $hidden);
 
         return $visible . '<span class="rmwr-ellipsis">&hellip;</span>' . $rendered;
+    }
+
+    /**
+     * Whether the "related posts inside Read More" feature is on (Pro).
+     *
+     * @return bool
+     */
+    private static function related_enabled() {
+        return function_exists('rmwr_is_premium') && rmwr_is_premium()
+            && '1' === get_option('rmwr_related_enable', '0');
+    }
+
+    /**
+     * Build a small related-posts list (same category, most recent) to append
+     * inside the collapsed content.
+     *
+     * @param WP_Post $post Current post.
+     * @return string
+     */
+    private static function related_html($post) {
+        $count = max(1, min(10, absint(get_option('rmwr_related_count', 3))));
+
+        $args = array(
+            'post_type'           => $post->post_type,
+            'post_status'         => 'publish',
+            'posts_per_page'      => $count,
+            'post__not_in'        => array($post->ID),
+            'orderby'             => 'date',
+            'order'               => 'DESC',
+            'ignore_sticky_posts' => true,
+            'no_found_rows'       => true,
+        );
+
+        $terms = wp_get_post_terms($post->ID, 'category', array('fields' => 'ids'));
+        if (!is_wp_error($terms) && !empty($terms)) {
+            $args['category__in'] = $terms;
+        }
+
+        $query = new WP_Query($args);
+        if (!$query->have_posts()) {
+            return '';
+        }
+
+        $items = '';
+        foreach ($query->posts as $related) {
+            $items .= '<li><a href="' . esc_url(get_permalink($related)) . '">' . esc_html(get_the_title($related)) . '</a></li>';
+        }
+        wp_reset_postdata();
+
+        return '<div class="rmwr-related"><strong>' . esc_html__('Related reading', 'rmwr') . '</strong><ul>' . $items . '</ul></div>';
+    }
+
+    /**
+     * Smart cut point: keep everything before the first H2/H3 section heading
+     * visible and collapse the rest (a natural "intro, then the article"
+     * teaser). Falls back to the first two paragraphs when there is no early
+     * heading. No AI call, no cost.
+     *
+     * @param string $content Rendered HTML.
+     * @return array{0:string,1:string} [visible, hidden]
+     */
+    private static function smart_split($content) {
+        if (preg_match('/<h[23][\s>]/i', $content, $m, PREG_OFFSET_CAPTURE)) {
+            $pos     = (int) $m[0][1];
+            $visible = substr($content, 0, $pos);
+            $hidden  = substr($content, $pos);
+            if ('' !== trim(wp_strip_all_tags($visible)) && '' !== trim(wp_strip_all_tags($hidden))) {
+                return array(force_balance_tags($visible), force_balance_tags($hidden));
+            }
+        }
+
+        return RMWR_Shortcode::split_html($content, 2, 'paragraphs');
     }
 
     /* ---------------------------------------------------------------------

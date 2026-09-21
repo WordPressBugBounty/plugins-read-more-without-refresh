@@ -53,12 +53,8 @@
             }).catch(function () { /* never disturb the visitor */ });
         } catch (e) { /* noop */ }
 
-        // Google Analytics 4, when present.
-        if (typeof window.gtag === 'function' && event === 'expand') {
-            try {
-                window.gtag('event', 'read_more_clicked', { event_category: 'Read More', value: key });
-            } catch (e) { /* noop */ }
-        }
+        // Ad / analytics conversion events (GA4, Meta Pixel, Google Ads).
+        fireAdEvents(key, postId, event);
 
         // Public hook for custom integrations.
         try {
@@ -66,6 +62,53 @@
                 detail: { instanceKey: key, postId: postId, variant: variant || '', timestamp: new Date().toISOString() }
             }));
         } catch (e) { /* noop */ }
+    }
+
+    /**
+     * Send a high-intent interaction to the site's ad / analytics platforms so
+     * engaged readers can be measured and retargeted. Fires only for the
+     * meaningful signals (expand, unlock, cta, share) and only for the
+     * platforms the admin enabled. All calls are wrapped so a missing or
+     * broken third-party tag can never disturb the visitor.
+     *
+     * @param {string} key    Instance key.
+     * @param {number} postId Post ID.
+     * @param {string} event  Interaction name.
+     */
+    function fireAdEvents(key, postId, event) {
+        var cfg = settings.adEvents;
+        if (!cfg || !cfg.enabled) {
+            return;
+        }
+        if (['expand', 'unlock', 'cta', 'share'].indexOf(event) === -1) {
+            return;
+        }
+
+        var payload = {
+            rmwr_event: event,
+            rmwr_key: key,
+            rmwr_post_id: parseInt(postId, 10) || 0
+        };
+
+        // Google Analytics 4 (gtag).
+        if (cfg.ga4 && typeof window.gtag === 'function') {
+            try { window.gtag('event', cfg.gaEventName || ('rmwr_' + event), payload); } catch (e) { /* noop */ }
+        }
+
+        // Meta / Facebook Pixel (custom event).
+        if (cfg.metaPixel && typeof window.fbq === 'function') {
+            try { window.fbq('trackCustom', cfg.metaEventName || 'RMWR_Engaged', payload); } catch (e) { /* noop */ }
+        }
+
+        // Google Ads conversion (needs a send_to id like 'AW-123456789/AbC-D_efG').
+        if (cfg.googleAds && cfg.googleAdsSendTo && typeof window.gtag === 'function') {
+            try { window.gtag('event', 'conversion', { send_to: cfg.googleAdsSendTo }); } catch (e) { /* noop */ }
+        }
+
+        // Generic dataLayer push for GTM users.
+        if (cfg.dataLayer && window.dataLayer && typeof window.dataLayer.push === 'function') {
+            try { window.dataLayer.push({ event: 'rmwr_' + event, rmwrKey: key, rmwrPostId: payload.rmwr_post_id }); } catch (e) { /* noop */ }
+        }
     }
 
     /* ---------------------------------------------------------------------
@@ -775,6 +818,104 @@
             });
             observer.observe(document.body, { childList: true, subtree: true });
         }
+
+        initReadingProgress();
+    }
+
+    /* ---------------------------------------------------------------------
+     * Reading progress bar + "continue reading" resume (free)
+     * ------------------------------------------------------------------ */
+
+    var progressStylesInjected = false;
+
+    function injectProgressStyles() {
+        if (progressStylesInjected) {
+            return;
+        }
+        progressStylesInjected = true;
+        var css = '.rmwr-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:99999;pointer-events:none;background:transparent}'
+            + '.rmwr-progress-fill{display:block;height:100%;width:0;background:var(--rmwr-progress-color,#7c3aed);transition:width .1s linear}'
+            + '.rmwr-resume{position:fixed;right:16px;bottom:16px;z-index:99999;background:var(--rmwr-progress-color,#7c3aed);color:#fff;border:0;border-radius:999px;padding:10px 16px;font:600 13px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.2)}'
+            + '.rmwr-resume:hover{filter:brightness(.92)}';
+        var style = document.createElement('style');
+        style.textContent = css;
+        document.head.appendChild(style);
+    }
+
+    function initReadingProgress() {
+        var cfg = settings.readingProgress;
+        if (!cfg || (!cfg.bar && !cfg.resume)) {
+            return;
+        }
+
+        injectProgressStyles();
+
+        if (cfg.bar) {
+            var bar = document.createElement('div');
+            bar.className = 'rmwr-progress';
+            bar.setAttribute('role', 'progressbar');
+            bar.setAttribute('aria-hidden', 'true');
+            var fill = document.createElement('span');
+            fill.className = 'rmwr-progress-fill';
+            bar.appendChild(fill);
+            document.body.appendChild(bar);
+
+            var barTicking = false;
+            var updateBar = function () {
+                var h = document.documentElement;
+                var max = (h.scrollHeight - h.clientHeight) || 1;
+                var top = h.scrollTop || window.pageYOffset || 0;
+                fill.style.width = Math.min(100, Math.max(0, (top / max) * 100)) + '%';
+                barTicking = false;
+            };
+            window.addEventListener('scroll', function () {
+                if (!barTicking) { barTicking = true; window.requestAnimationFrame(updateBar); }
+            }, { passive: true });
+            updateBar();
+        }
+
+        if (cfg.resume) {
+            initResume();
+        }
+    }
+
+    function initResume() {
+        var storeKey = 'rmwr_pos_' + location.pathname;
+
+        var resumeTicking = false;
+        window.addEventListener('scroll', function () {
+            if (resumeTicking) { return; }
+            resumeTicking = true;
+            window.requestAnimationFrame(function () {
+                try { window.localStorage.setItem(storeKey, String(window.pageYOffset || 0)); } catch (e) { /* noop */ }
+                resumeTicking = false;
+            });
+        }, { passive: true });
+
+        var saved = 0;
+        try { saved = parseInt(window.localStorage.getItem(storeKey), 10) || 0; } catch (e) { /* noop */ }
+        if (saved < 400) {
+            return; // Not worth offering for a tiny scroll.
+        }
+
+        var pill = document.createElement('button');
+        pill.type = 'button';
+        pill.className = 'rmwr-resume';
+        pill.textContent = settings.resumeText || 'Continue reading';
+        document.body.appendChild(pill);
+
+        var dismiss = function () {
+            if (pill.parentNode) { pill.parentNode.removeChild(pill); }
+        };
+        pill.addEventListener('click', function () {
+            try {
+                window.scrollTo({ top: saved, behavior: 'smooth' });
+            } catch (e) {
+                window.scrollTo(0, saved);
+            }
+            dismiss();
+        });
+        window.setTimeout(dismiss, 8000); // Auto-hide if ignored.
     }
 
     // Public API for theme developers.

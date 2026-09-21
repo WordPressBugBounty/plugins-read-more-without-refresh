@@ -21,6 +21,9 @@ class RMWR_Shortcode {
     /** @var bool Skip kses for trusted internal callers (auto-apply/sections). */
     private static $skip_kses = false;
 
+    /** @var string|null Free tier: the first accordion group id allowed on the page (taste-then-wall). */
+    private static $free_accordion_group = null;
+
     public function __construct() {
         add_action('init', array($this, 'register_shortcodes'));
     }
@@ -89,16 +92,39 @@ class RMWR_Shortcode {
         // smooth_scroll, scroll_offset, and the global Read More / Read Less
         // texts. A basic fade is the only animation the free tier allows.
         if (!rmwr_is_premium()) {
+            // Free tier gets a TASTE of the Pro toolkit, then a wall: one button
+            // template (modern-blue), the fade and slide animations, and the
+            // first accordion group on the page. Everything else is neutralized
+            // so the SAME code renders a plain, SEO-safe toggle.
             foreach (array(
-                'open', 'close', 'accordion_id', 'question', 'template', 'icon',
-                'fa_icon', 'after', 'scroll', 'device', 'role', 'lazy', 'limit',
-                'lock', 'paywall', 'cta', 'block', 'ai_summary',
+                'open', 'close', 'icon', 'fa_icon', 'after', 'scroll', 'device',
+                'role', 'lazy', 'limit', 'lock', 'paywall', 'cta', 'block', 'ai_summary',
             ) as $premium_att) {
                 $atts[$premium_att] = '';
             }
-            $atts['mode'] = 'normal';
-            if (!in_array($atts['animation'], array('', 'none', 'fade'), true)) {
+
+            // One free button template.
+            $atts['template'] = ('modern-blue' === $atts['template']) ? 'modern-blue' : '';
+
+            // A couple of free animations.
+            if (!in_array($atts['animation'], array('', 'none', 'fade', 'slide'), true)) {
                 $atts['animation'] = 'fade';
+            }
+
+            // First accordion group on the page is free; later ones fall back
+            // to a normal toggle.
+            if ('accordion' === $atts['mode']) {
+                $group = '' !== $atts['accordion_id'] ? $atts['accordion_id'] : 'default';
+                if (null === self::$free_accordion_group) {
+                    self::$free_accordion_group = $group;
+                }
+                if (self::$free_accordion_group !== $group) {
+                    $atts['mode']         = 'normal';
+                    $atts['accordion_id'] = '';
+                    $atts['question']     = '';
+                }
+            } else {
+                $atts['question'] = '';
             }
         }
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Read More Without Refresh
- * Version: 4.1.1
+ * Version: 4.2.0
  * Plugin URI: https://shop.8web.gr/read-more-without-refresh-pro/
  * Description: Boost your SEO without affecting user experience. Show/hide extra content on pages/posts/products and Custom Post Types - now with Content Locker, Teaser Paywall, AI Summaries, Auto-Apply rules, real Analytics, A/B testing and more.
  * Author: Eightweb Interactive
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('RMWR_PRO_VERSION', '4.1.1');
+define('RMWR_PRO_VERSION', '4.2.0');
 define('RMWR_PRO_FILE', __FILE__);
 define('RMWR_PRO_BASENAME', plugin_basename(__FILE__));
 define('RMWR_PRO_URL', plugin_dir_url(__FILE__));
@@ -39,6 +39,7 @@ require_once RMWR_PRO_PATH . 'includes/class-rmwr-block.php';
 
 // Feature modules
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-analytics.php';
+require_once RMWR_PRO_PATH . 'includes/class-rmwr-aeo.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-ab-testing.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-auto-apply.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-sections.php';
@@ -48,6 +49,8 @@ require_once RMWR_PRO_PATH . 'includes/class-rmwr-ai-summary.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-cta.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-global-blocks.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-import-export.php';
+require_once RMWR_PRO_PATH . 'includes/class-rmwr-promote.php';
+require_once RMWR_PRO_PATH . 'includes/class-rmwr-upgrade.php';
 
 /**
  * Initialize plugin.

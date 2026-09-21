@@ -75,8 +75,8 @@ if ( !function_exists( 'rmwr_fs' ) ) {
             'has_paid_plans'   => true,
             'is_org_compliant' => true,
             'trial'            => array(
-                'days'               => 7,
-                'is_require_payment' => false,
+                'days'               => 3,
+                'is_require_payment' => true,
             ),
             'menu'             => array(
                 'slug'    => 'read_more_without_refresh',
@@ -107,6 +107,13 @@ if ( !function_exists( 'rmwr_upgrade_url' ) ) {
      * @return string
      */
     function rmwr_upgrade_url() {
+        // Our own branded pricing page (RMWR_Upgrade). Its CTAs open the
+        // Freemius checkout via checkout_url(), so payment and license
+        // activation still run entirely through Freemius. Only unlicensed
+        // sites register the page, which is the only time this URL is shown.
+        if ( function_exists( 'admin_url' ) && ( ! function_exists( 'rmwr_is_premium' ) || ! rmwr_is_premium() ) ) {
+            return admin_url( 'admin.php?page=rmwr-get-pro' );
+        }
         $fs = ( function_exists( 'rmwr_fs' ) ? rmwr_fs() : null );
         if ( $fs && method_exists( $fs, 'get_upgrade_url' ) ) {
             return $fs->get_upgrade_url();
@@ -137,6 +144,22 @@ if ( !function_exists( 'rmwr_is_premium' ) ) {
     function rmwr_is_premium() {
         $fs = ( function_exists( 'rmwr_fs' ) ? rmwr_fs() : null );
         return (bool) ($fs && method_exists( $fs, 'can_use_premium_code' ) && $fs->can_use_premium_code());
+    }
+
+}
+if ( ! function_exists( 'rmwr_style_allowed' ) ) {
+    /**
+     * Whether the site may use the custom button styling (Style tab).
+     *
+     * Styling is a premium feature, EXCEPT on sites that had already
+     * customized their button before it moved behind Pro - those are
+     * "grandfathered" (see RMWR_Pro::maybe_upgrade) so their live design never
+     * changes. Fresh free installs inherit the theme's link style instead.
+     *
+     * @return bool
+     */
+    function rmwr_style_allowed() {
+        return rmwr_is_premium() || '1' === get_option( 'rmwr_style_grandfathered', '0' );
     }
 
 }

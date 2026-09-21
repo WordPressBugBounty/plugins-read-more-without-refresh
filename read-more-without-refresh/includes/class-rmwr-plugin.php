@@ -41,12 +41,21 @@ class RMWR_Pro {
         // Analytics stays on for both tiers: the free tier counts expands
         // (cache-safe) and shows the teaser; premium shows the full dashboard.
         $this->modules['analytics'] = new RMWR_Analytics();
+        // Admin-only promotion: dashboard stats widget (both tiers) and the
+        // free-tier upgrade notice. Its upsell parts self-gate on the license.
+        if (is_admin()) {
+            $this->modules['promote'] = new RMWR_Promote();
+            // Custom branded pricing/upgrade page. Self-gates: only registers
+            // its menu while unlicensed. CTAs open the Freemius checkout.
+            $this->modules['upgrade'] = new RMWR_Upgrade();
+        }
 
         // Premium-only modules - loaded only when the license unlocks them, so
         // their admin pages, meta boxes and REST endpoints never exist on a
         // free install. Their features are additionally gated at the shortcode
         // level (see RMWR_Shortcode) as defense in depth.
         if (rmwr_is_premium()) {
+            $this->modules['aeo']           = new RMWR_AEO();
             $this->modules['ab']            = new RMWR_AB_Testing();
             $this->modules['auto_apply']    = new RMWR_Auto_Apply();
             $this->modules['sections']      = new RMWR_Sections();
@@ -80,6 +89,19 @@ class RMWR_Pro {
         // (auto-generated uniqid keys), which grows without bound. The data is
         // unusable by design, so drop it on upgrade.
         delete_option('rmwr_instances');
+
+        // Grandfather existing sites when the Style tab moves behind Pro: any
+        // site that already customized its button keeps full styling forever.
+        // This only runs on an UPGRADE (maybe_upgrade returns early on a fresh
+        // install, whose db_version already matches), so new installs are not
+        // grandfathered and get the theme-inherited look on the free tier.
+        if ('' === get_option('rmwr_style_grandfathered', '')) {
+            update_option(
+                'rmwr_style_grandfathered',
+                RMWR_Settings_Pro::has_custom_styles() ? '1' : '0',
+                false
+            );
+        }
 
         update_option('rmwr_db_version', RMWR_PRO_VERSION, false);
     }

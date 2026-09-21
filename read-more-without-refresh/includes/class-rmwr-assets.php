@@ -26,6 +26,7 @@ class RMWR_Assets {
         add_action('wp', array($this, 'detect_early'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
         add_action('enqueue_block_editor_assets', array($this, 'enqueue_block_editor_assets'));
+        add_action('wp_footer', array($this, 'print_powered_by'), 99);
     }
 
     /**
@@ -50,6 +51,62 @@ class RMWR_Assets {
         if (did_action('wp_enqueue_scripts') && 'never' !== get_option('rmwr_load_fontawesome', 'auto')) {
             self::enqueue_fontawesome();
         }
+    }
+
+    /**
+     * Footer credit. Printed once per page, only when a widget rendered.
+     *
+     * The HTML comment is always emitted (an invisible attribution backlink
+     * pointing at the plugin's own directory listing, not at 8web). The
+     * visible "Powered by" link is opt-in via a setting and off by default,
+     * so it never appears on a site without the owner enabling it.
+     */
+    public function print_powered_by() {
+        if (!self::$needed) {
+            return;
+        }
+
+        echo "\n<!-- Read More Without Refresh - https://wordpress.org/plugins/read-more-without-refresh/ -->\n";
+
+        if ('1' !== get_option('rmwr_show_powered_by', '0')) {
+            return;
+        }
+
+        printf(
+            '<div class="rmwr-powered-by" style="text-align:center;font-size:11px;opacity:.6;margin:8px 0;">%s <a href="%s" target="_blank" rel="noopener">%s</a></div>' . "\n",
+            esc_html__('Powered by', 'rmwr'),
+            'https://wordpress.org/plugins/read-more-without-refresh/',
+            esc_html__('Read More Without Refresh', 'rmwr')
+        );
+    }
+
+    /**
+     * Ad / analytics conversion-event config passed to the frontend. Lets the
+     * site fire a high-intent "reader engaged" event into GA4, Meta Pixel,
+     * Google Ads or GTM's dataLayer whenever a visitor expands, unlocks or
+     * converts - so engaged readers can be measured and retargeted.
+     *
+     * Premium feature: on the free tier (or when disabled) it returns a single
+     * "off" flag and the frontend fires nothing.
+     *
+     * @return array
+     */
+    private static function ad_events_config() {
+        $enabled = rmwr_is_premium() && '1' === get_option('rmwr_ad_events', '0');
+        if (!$enabled) {
+            return array('enabled' => false);
+        }
+
+        return array(
+            'enabled'         => true,
+            'ga4'             => '1' === get_option('rmwr_ad_ga4', '1'),
+            'metaPixel'       => '1' === get_option('rmwr_ad_meta', '0'),
+            'googleAds'       => '1' === get_option('rmwr_ad_google_ads', '0'),
+            'googleAdsSendTo' => trim((string) get_option('rmwr_ad_google_ads_send_to', '')),
+            'dataLayer'       => '1' === get_option('rmwr_ad_datalayer', '0'),
+            'gaEventName'     => trim((string) get_option('rmwr_ad_ga_event_name', '')),
+            'metaEventName'   => trim((string) get_option('rmwr_ad_meta_event_name', '')),
+        );
     }
 
     /**
@@ -152,6 +209,12 @@ class RMWR_Assets {
             'abVariants'    => RMWR_AB_Testing::get_variants(),
             'cta'           => RMWR_CTA::get_frontend_config(),
             'locker'        => RMWR_Locker::get_frontend_config(),
+            'adEvents'      => self::ad_events_config(),
+            'readingProgress' => array(
+                'bar'    => '1' === get_option('rmwr_reading_progress', '0'),
+                'resume' => '1' === get_option('rmwr_reading_resume', '0'),
+            ),
+            'resumeText'    => __('Continue reading', 'rmwr'),
             'loadingText'   => __('Loading...', 'rmwr'),
             'debug'         => defined('WP_DEBUG') && WP_DEBUG,
         ));
@@ -171,6 +234,17 @@ class RMWR_Assets {
      * @return string
      */
     private static function build_dynamic_css() {
+        // Free (non-grandfathered) sites inherit the theme's link style: we
+        // emit only the accessibility outline and the print rule, no colors,
+        // borders, fonts or spacing. Styling is a Pro feature.
+        if (!rmwr_style_allowed()) {
+            $css = '.read-link:focus-visible{outline:2px solid currentColor;outline-offset:2px;}';
+            if ('1' === get_option('rmwr_print_expand', '1')) {
+                $css .= '@media print{.read_div{display:block!important;}.read-link,.rmwr-toggle-all{display:none!important;}}';
+            }
+            return $css;
+        }
+
         $font_weight    = self::css(get_option('rmwr_font_weight', 'normal'));
         $text_color     = self::css(get_option('rmwr_text_color', '#000000'));
         $hover_color    = self::css(get_option('rmwr_text_hover_color', '#191919'));
@@ -250,9 +324,48 @@ class RMWR_Assets {
     }
 
     /**
+     * Purple-branded CSS for the Freemius in-dashboard pricing table.
+     * Targets the fs-* classes rendered by freemius-pricing.js.
+     *
+     * @return string
+     */
+    private static function fs_pricing_css() {
+        // Colour only - no transforms, scaling or layout changes. Restyling the
+        // layout of the hosted React pricing widget breaks its alignment (the
+        // per-plan license selector shares a grid across columns), so we keep
+        // Freemius' proven layout and only apply the brand purple.
+        return <<<'CSS'
+#fs_pricing img.fs-plugin-logo,#fs_pricing .fs-plugin-logo>img,#fs_pricing .fs-plugin-title-and-logo img{content:url('https://ps.w.org/read-more-without-refresh/assets/icon-256x256.gif?rev=2288266') !important;width:72px !important;height:72px !important;object-fit:contain !important}
+#fs_pricing .fs-package-tab--selected{background:#7c3aed !important;color:#fff !important}
+#fs_pricing .fs-packages{gap:26px !important;padding:10px 0 !important}
+#fs_pricing .fs-package{border-radius:24px !important;overflow:hidden !important;border:1px solid #ececf3 !important;box-shadow:0 10px 34px rgba(17,24,39,.08) !important}
+#fs_pricing .fs-plan-features svg,#fs_pricing .fs-plan-features .fs-icon,#fs_pricing .fs-support-and-main-features svg,#fs_pricing .fs-feature svg{color:#7c3aed !important;fill:#7c3aed !important}
+#fs_pricing .fs-upgrade-button-container button,#fs_pricing .fs-upgrade-button-container a,#fs_pricing .fs-round-button{background:#7c3aed !important;color:#fff !important;border-color:#7c3aed !important;font-weight:700 !important;border-radius:12px !important}
+#fs_pricing .fs-upgrade-button-container button:hover,#fs_pricing .fs-upgrade-button-container a:hover,#fs_pricing .fs-round-button:hover{background:#6d28d9 !important;border-color:#6d28d9 !important}
+#fs_pricing .fs-button--outline{background:transparent !important;color:#7c3aed !important;border:2px solid #7c3aed !important}
+#fs_pricing .fs-button--outline:hover{background:rgba(124,58,237,.08) !important}
+#fs_pricing .fs-annual-discount,#fs_pricing .fs-license-quantity-discount{background:rgba(124,58,237,.12) !important;color:#6d28d9 !important}
+#fs_pricing .fs-license-quantity-price{color:#6d28d9 !important;font-weight:700 !important}
+#fs_pricing input[type="radio"],#fs_pricing input[type="checkbox"]{accent-color:#7c3aed}
+#fs_pricing .fs-money-back-guarantee-title,#fs_pricing .fs-trial-message{color:#6d28d9 !important}
+#fs_pricing .fs-testimonial-rating svg{color:#f0b849 !important;fill:#f0b849 !important}
+CSS;
+    }
+
+    /**
      * Admin assets (settings + analytics pages only).
      */
     public function enqueue_admin_assets($hook) {
+        // Freemius in-dashboard pricing page: the Freemius "Checkout Custom CSS"
+        // only styles the hosted checkout, not this in-WP pricing table, so we
+        // brand the plans table in our own purple from here.
+        if (false !== strpos($hook, 'read_more_without_refresh') && false !== strpos($hook, 'pricing')) {
+            wp_register_style('rmwr-fs-pricing', false, array(), RMWR_PRO_VERSION);
+            wp_enqueue_style('rmwr-fs-pricing');
+            wp_add_inline_style('rmwr-fs-pricing', self::fs_pricing_css());
+            return;
+        }
+
         $our_pages = array(
             'toplevel_page_read_more_without_refresh',
             'rmwr-settings_page_rmwr-analytics',

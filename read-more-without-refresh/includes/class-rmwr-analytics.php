@@ -28,10 +28,21 @@ class RMWR_Analytics {
     /** Requests allowed per IP per minute on the tracking endpoint. */
     const RATE_LIMIT = 30;
 
+    /** Days of raw events kept before pruning (all-time totals live in an option). */
+    const RETENTION_DAYS = 90;
+
+    /** Option holding lifetime per-event counts, preserved across pruning. */
+    const LIFETIME_OPTION = 'rmwr_lifetime_counts';
+
     public function __construct() {
         add_action('rest_api_init', array($this, 'register_routes'));
         add_action('admin_menu', array($this, 'register_menu'), 20);
         add_action('admin_init', array($this, 'handle_csv_export'));
+
+        add_action('rmwr_prune_events', array($this, 'prune_events'));
+        if (!wp_next_scheduled('rmwr_prune_events')) {
+            wp_schedule_event(time() + HOUR_IN_SECONDS, 'daily', 'rmwr_prune_events');
+        }
     }
 
     /* ---------------------------------------------------------------------
@@ -85,6 +96,18 @@ class RMWR_Analytics {
             KEY email (email),
             KEY created_at (created_at)
         ) {$charset};");
+
+        // Seed lifetime counters from existing rows once, so all-time totals
+        // survive later pruning (existing installs keep their full history).
+        if (false === get_option(self::LIFETIME_OPTION, false)) {
+            $seed = array();
+            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+            $rows = $wpdb->get_results("SELECT event, COUNT(*) AS c FROM {$events} GROUP BY event", ARRAY_A);
+            foreach ((array) $rows as $row) {
+                $seed[$row['event']] = (int) $row['c'];
+            }
+            add_option(self::LIFETIME_OPTION, $seed, '', false);
+        }
     }
 
     /**
@@ -92,8 +115,46 @@ class RMWR_Analytics {
      */
     public static function drop_tables() {
         global $wpdb;
+        wp_clear_scheduled_hook('rmwr_prune_events');
+        delete_option(self::LIFETIME_OPTION);
         $wpdb->query('DROP TABLE IF EXISTS ' . self::events_table()); // phpcs:ignore WordPress.DB.PreparedSQL
         $wpdb->query('DROP TABLE IF EXISTS ' . self::leads_table());  // phpcs:ignore WordPress.DB.PreparedSQL
+    }
+
+    /* ---------------------------------------------------------------------
+     * Lifetime counters + retention (keep the events table bounded)
+     * ------------------------------------------------------------------ */
+
+    private static function bump_lifetime($event) {
+        $counts = get_option(self::LIFETIME_OPTION, array());
+        if (!is_array($counts)) {
+            $counts = array();
+        }
+        $counts[$event] = (isset($counts[$event]) ? (int) $counts[$event] : 0) + 1;
+        update_option(self::LIFETIME_OPTION, $counts, false);
+    }
+
+    /**
+     * All-time count for an event, preserved even after old rows are pruned.
+     *
+     * @param string $event Event type.
+     * @return int
+     */
+    public static function lifetime_count($event) {
+        $counts = get_option(self::LIFETIME_OPTION, array());
+        return (is_array($counts) && isset($counts[$event])) ? (int) $counts[$event] : 0;
+    }
+
+    /**
+     * Delete raw events older than the retention window. Lifetime totals live
+     * in an option, so pruning never loses the headline numbers.
+     */
+    public function prune_events() {
+        global $wpdb;
+        $cutoff = gmdate('Y-m-d H:i:s', current_time('timestamp') - self::RETENTION_DAYS * DAY_IN_SECONDS);
+        $table  = self::events_table();
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only; value is prepared.
+        $wpdb->query($wpdb->prepare("DELETE FROM {$table} WHERE created_at < %s", $cutoff));
     }
 
     /* ---------------------------------------------------------------------
@@ -150,6 +211,8 @@ class RMWR_Analytics {
             ),
             array('%s', '%d', '%s', '%s', '%s')
         );
+
+        self::bump_lifetime($event);
 
         return new WP_REST_Response(array('ok' => true), 200);
     }
@@ -243,9 +306,11 @@ class RMWR_Analytics {
     private function render_teaser() {
         global $wpdb;
         $events_table = self::events_table();
-        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
-        $total = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$events_table} WHERE event = 'expand'");
-        $url   = function_exists('rmwr_upgrade_url') ? rmwr_upgrade_url() : 'https://shop.8web.gr/read-more-without-refresh-pro/';
+        $total  = self::lifetime_count('expand');
+        $since  = gmdate('Y-m-d H:i:s', current_time('timestamp') - DAY_IN_SECONDS);
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only; value prepared.
+        $last24 = (int) $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$events_table} WHERE event = 'expand' AND created_at >= %s", $since));
+        $url    = function_exists('rmwr_upgrade_url') ? rmwr_upgrade_url() : 'https://shop.8web.gr/read-more-without-refresh-pro/';
 
         // Representative dummy data shown faded behind the lock, so the free
         // tier previews the real dashboard.
@@ -271,6 +336,20 @@ class RMWR_Analytics {
                     <p class="rmwr-subtitle"><?php esc_html_e('See how your visitors engage with your hidden content.', 'rmwr'); ?></p>
                 </div>
                 <span class="rmwr-tier-badge rmwr-tier-pro">Pro</span>
+            </div>
+
+            <div class="rmwr-free-live" style="display:flex;gap:26px;flex-wrap:wrap;align-items:baseline;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:16px 20px;margin-bottom:16px;">
+                <div>
+                    <div style="font-size:30px;font-weight:700;color:#7c3aed;line-height:1;"><?php echo esc_html(number_format_i18n($last24)); ?></div>
+                    <div style="font-size:12px;color:#646970;margin-top:4px;"><?php esc_html_e('Read More expands in the last 24 hours', 'rmwr'); ?></div>
+                </div>
+                <div>
+                    <div style="font-size:20px;font-weight:700;color:#1d2327;line-height:1;"><?php echo esc_html(number_format_i18n($total)); ?></div>
+                    <div style="font-size:12px;color:#646970;margin-top:4px;"><?php esc_html_e('all time', 'rmwr'); ?></div>
+                </div>
+                <div style="margin-left:auto;font-size:12px;color:#646970;max-width:300px;">
+                    <?php esc_html_e('This is your free 24-hour view. Pro unlocks full history, per-page and per-button breakdowns, an engagement heatmap and CSV export.', 'rmwr'); ?>
+                </div>
             </div>
 
             <div class="rmwr-analytics-teaser">
@@ -379,6 +458,20 @@ class RMWR_Analytics {
              GROUP BY variant ORDER BY c DESC"
         );
 
+        $heat_raw = $wpdb->get_results(
+            "SELECT DAYOFWEEK(created_at) AS dow, HOUR(created_at) AS hr, COUNT(*) AS c
+             FROM {$events_table} WHERE {$where} AND event = 'expand'
+             GROUP BY dow, hr"
+        );
+
+        $refresh_raw = $wpdb->get_results(
+            "SELECT post_id, COUNT(*) AS c
+             FROM {$events_table}
+             WHERE event = 'expand' AND post_id > 0
+               AND created_at >= '" . esc_sql(gmdate('Y-m-d H:i:s', current_time('timestamp') - 30 * DAY_IN_SECONDS)) . "'
+             GROUP BY post_id ORDER BY c DESC LIMIT 40"
+        );
+
         $lead_count = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$leads_table}");
         // phpcs:enable
 
@@ -389,6 +482,30 @@ class RMWR_Analytics {
         $daily_map = array();
         foreach ($daily as $row) {
             $daily_map[$row->day] = (int) $row->c;
+        }
+
+        // Engagement heatmap grid keyed by MySQL DAYOFWEEK (1=Sun..7=Sat) and
+        // hour (0-23), in the site's local time (created_at is stored local).
+        $heat     = array();
+        $heat_max = 0;
+        foreach ($heat_raw as $row) {
+            $heat[(int) $row->dow][(int) $row->hr] = (int) $row->c;
+            $heat_max = max($heat_max, (int) $row->c);
+        }
+
+        // "Worth refreshing": posts still getting expands but not updated in a
+        // long time. High engagement + stale content = a quick SEO win.
+        $refresh       = array();
+        $stale_before  = current_time('timestamp') - 180 * DAY_IN_SECONDS;
+        foreach ($refresh_raw as $row) {
+            $pid      = (int) $row->post_id;
+            $modified = get_post_modified_time('U', true, $pid);
+            if ($modified && $modified < $stale_before && 'publish' === get_post_status($pid)) {
+                $refresh[] = array('id' => $pid, 'c' => (int) $row->c, 'modified' => $modified);
+                if (count($refresh) >= 8) {
+                    break;
+                }
+            }
         }
 
         $base_url = admin_url('admin.php?page=rmwr-analytics');
@@ -474,6 +591,48 @@ class RMWR_Analytics {
             </div>
 
             <div class="rmwr-analytics-section">
+                <h2><?php esc_html_e('Engagement heatmap (when readers expand)', 'rmwr'); ?></h2>
+                <?php if ($heat_max > 0) :
+                    $days_order = array(
+                        2 => __('Mon', 'rmwr'), 3 => __('Tue', 'rmwr'), 4 => __('Wed', 'rmwr'),
+                        5 => __('Thu', 'rmwr'), 6 => __('Fri', 'rmwr'), 7 => __('Sat', 'rmwr'), 1 => __('Sun', 'rmwr'),
+                    );
+                    ?>
+                    <div style="overflow-x:auto;">
+                        <table class="rmwr-heatmap" style="border-collapse:separate;border-spacing:2px;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <?php for ($h = 0; $h < 24; $h++) : ?>
+                                        <th style="font-weight:400;font-size:10px;color:#646970;text-align:center;min-width:16px;"><?php echo 0 === $h % 3 ? esc_html((string) $h) : ''; ?></th>
+                                    <?php endfor; ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($days_order as $d => $label) : ?>
+                                    <tr>
+                                        <td style="font-size:12px;color:#646970;padding-right:8px;white-space:nowrap;"><?php echo esc_html($label); ?></td>
+                                        <?php for ($h = 0; $h < 24; $h++) :
+                                            $c     = isset($heat[$d][$h]) ? $heat[$d][$h] : 0;
+                                            $alpha = $c > 0 ? max(0.08, round($c / $heat_max, 3)) : 0;
+                                            $bg    = $c > 0 ? 'rgba(124,58,237,' . $alpha . ')' : '#f0f0f1';
+                                            /* translators: 1: weekday, 2: hour, 3: count */
+                                            $tip = sprintf(__('%1$s %2$d:00 - %3$d expands', 'rmwr'), $label, $h, $c);
+                                            ?>
+                                            <td title="<?php echo esc_attr($tip); ?>" style="width:16px;height:16px;border-radius:3px;background:<?php echo esc_attr($bg); ?>;"></td>
+                                        <?php endfor; ?>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="font-size:12px;color:#646970;margin-top:8px;"><?php esc_html_e('Darker cells mean more Read More expands at that day and hour (your site time). Use it to time new posts, emails and campaigns for when your readers are most engaged.', 'rmwr'); ?></p>
+                <?php else : ?>
+                    <p><?php esc_html_e('No expands recorded yet for this period.', 'rmwr'); ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="rmwr-analytics-section">
                 <h2><?php esc_html_e('Top content (by page)', 'rmwr'); ?></h2>
                 <table class="wp-list-table widefat fixed striped">
                     <thead>
@@ -508,6 +667,36 @@ class RMWR_Analytics {
                     </tbody>
                 </table>
             </div>
+
+            <?php if (!empty($refresh)) : ?>
+            <div class="rmwr-analytics-section">
+                <h2><?php esc_html_e('Worth refreshing', 'rmwr'); ?></h2>
+                <p style="color:#646970;margin-top:0;"><?php esc_html_e('These posts still pull Read More expands but have not been updated in over 6 months. Refreshing them is an easy SEO win.', 'rmwr'); ?></p>
+                <table class="wp-list-table widefat fixed striped">
+                    <thead>
+                        <tr>
+                            <th><?php esc_html_e('Post', 'rmwr'); ?></th>
+                            <th><?php esc_html_e('Expands (30 days)', 'rmwr'); ?></th>
+                            <th><?php esc_html_e('Last updated', 'rmwr'); ?></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($refresh as $row) : ?>
+                            <tr>
+                                <td><?php echo esc_html(get_the_title($row['id'])); ?></td>
+                                <td><strong><?php echo esc_html(number_format_i18n($row['c'])); ?></strong></td>
+                                <td><?php
+                                    /* translators: %s: human-readable time difference, e.g. "8 months" */
+                                    printf(esc_html__('%s ago', 'rmwr'), esc_html(human_time_diff($row['modified'], current_time('timestamp'))));
+                                ?></td>
+                                <td><a href="<?php echo esc_url(get_edit_post_link($row['id'])); ?>"><?php esc_html_e('Refresh', 'rmwr'); ?></a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php endif; ?>
 
             <div class="rmwr-analytics-section">
                 <h2><?php esc_html_e('Top instances', 'rmwr'); ?></h2>

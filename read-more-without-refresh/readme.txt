@@ -2,9 +2,9 @@
 Contributors: gkouvousisg
 Tags: read more, read less, accordion, faq, expand, collapse, content locker, paywall, seo, accessibility
 Requires at least: 5.8
-Tested up to: 7.0.1
+Tested up to: 7.1.1
 Requires PHP: 7.4
-Stable tag: 4.1.1
+Stable tag: 4.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,37 +12,46 @@ Expand hidden content without a page refresh. 100% SEO-friendly and crawlable, n
 
 == Description ==
 
-<p>Introducing the <strong>Read More Without Refresh WordPress plugin v4.1.0</strong> - your key to elevating user experience <strong>and SEO</strong> on your website. 🚀</p>
+<p>🏆 <strong>Trusted on 20,000+ WordPress sites.</strong> Long content is great for SEO and hard on readers, and Read More Without Refresh lets you keep both. Visitors see a short, clean version and open the rest with one tap. No page reload, no jump, no spinner. Search engines still get every single word, because the hidden text sits right there in the HTML the whole time.</p>
 
-<p>Say goodbye to clunky page reloads that break content exploration. Your readers expand your valuable content instantly, with no interruption, while <strong>every hidden word stays 100% crawlable by search engines</strong>. A win for both visitors and Google.</p>
+<p>One light plugin, no page builder required. Works with Gutenberg, Elementor, Divi and plain shortcodes, and only loads its assets on the pages that actually use it.</p>
+
+<p>&#128064; <strong>Try the live demo</strong> - <a href="https://apps.8web.gr/demos/wordpress-read-more-without-refresh-plugin/">open a real page and expand the content yourself</a>. No signup, no install. Or watch the 60-second video:</p>
 
 https://youtu.be/uBKMmvFgqqg
 
-<h3>Latest Update</h3>
-<p><strong>🎉 Version 4.1.0 is our biggest release yet.</strong> On top of the classic toolkit, the PRO version now adds a full growth suite: content locker, teaser paywall, AI summaries, a real analytics dashboard, A/B testing, sitewide automation and reusable content blocks:</p>
-
-https://youtu.be/bX4vgJWL7wM
-
-<h3>✨ Free Version Features:</h3>
+<h3>🔥 What is new in this release</h3>
+<p>This is the biggest step the plugin has taken. On top of the Read More toolkit you already know, the latest version adds real SEO and growth tools:</p>
 <ul>
-  <li><strong>Instant Read More / Read Less</strong> - smooth expand and collapse with no page refresh</li>
-  <li><strong>100% SEO-friendly</strong> - all hidden content stays in the initial HTML and is fully crawlable</li>
-  <li><strong>Smooth Scroll</strong> - automatically scrolls to the expanded content</li>
-  <li><strong>Print Optimization</strong> - all content auto-expands when a reader prints the page</li>
-  <li><strong>Customizable button</strong> - colors, borders, padding and font weight to match your brand</li>
-  <li><strong>Modern tabbed settings UI</strong> - clean, organized and fully responsive</li>
-  <li><strong>Gutenberg compatible</strong> - and works with any page builder that renders shortcodes</li>
-  <li><strong>Full accessibility</strong> - ARIA support, keyboard navigation (Enter and Space), screen-reader friendly</li>
-  <li><strong>Enterprise security</strong> - zero inline JavaScript and comprehensive sanitization</li>
+  <li>🤖 <strong>Get found by AI search.</strong> The new AI Answer Optimizer publishes an llms.txt index and pings IndexNow the moment you hit update, so ChatGPT, Google AI Overviews and Bing pick your content up in minutes instead of weeks. Your collapsed FAQs already ship as valid FAQ schema.</li>
+  <li>🎯 <strong>Retarget the people who actually read.</strong> When a visitor expands your content, send that intent straight into GA4, Meta Pixel, Google Ads or Google Tag Manager. Stop paying to re-reach people who bounced.</li>
+  <li>🧹 <strong>Collapse your old posts in bulk.</strong> A new paragraph mode hides everything from, say, the second paragraph onward across your whole site. No shortcodes, no editing hundreds of articles by hand.</li>
+  <li>🧭 <strong>Keep readers moving.</strong> An optional reading-progress bar, plus a Continue Reading button that drops returning visitors back exactly where they stopped.</li>
+  <li>📈 <strong>See your impact.</strong> A dashboard widget shows how many times readers expanded your content, in the last 24 hours and all time.</li>
 </ul>
 
-It works via a simple shortcode and can be placed everywhere. You can try the Live demo <strong><a target="_blank" href="https://apps.8web.gr/demos/wordpress-read-more-without-refresh-plugin/">here</a></strong>.
-
-<p><strong>Simple Shortcode Usage:</strong> <code>[read more] Your long text [/read]</code></p>
-
-<h3>🚀 Pro Version (the complete content-expansion and growth toolkit):</h3>
-<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get it HERE</a></strong></p>
+<h3>🎁 Free version, everything you need to start</h3>
 <ul>
+  <li><strong>Instant Read More and Read Less</strong> - expand and collapse with no page refresh</li>
+  <li><strong>100% SEO-friendly</strong> - hidden text stays in the initial HTML and is fully crawlable</li>
+  <li><strong>Reading progress and resume</strong> - show a progress bar and send returning readers back to where they left off</li>
+  <li><strong>Engagement widget</strong> - see how often people expand your content, right on your WordPress dashboard</li>
+  <li><strong>Smooth scroll</strong> to the content you just opened</li>
+  <li><strong>Print optimization</strong> - everything auto-expands when a page is printed</li>
+  <li><strong>Styleable button</strong> - colors, borders, padding and font weight to match your brand</li>
+  <li><strong>Works everywhere</strong> - a Gutenberg block plus a shortcode for any builder</li>
+  <li><strong>Accessible by default</strong> - ARIA, keyboard support (Enter and Space), screen-reader friendly</li>
+  <li><strong>Clean and safe</strong> - no inline JavaScript, full sanitization, and assets load only where they are used</li>
+</ul>
+
+<p><strong>Simple shortcode usage:</strong> <code>[read more] Your long text [/read]</code>. It works anywhere - pages, posts, products, widgets and templates.</p>
+
+<h3>🚀 Pro version, the full content and growth toolkit</h3>
+<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get Pro here</a></strong>, with a 3-day free trial.</p>
+<ul>
+  <li><strong>AI Answer Optimizer (AEO)</strong> - publish an llms.txt index and ping IndexNow the second you hit update, so AI engines and Bing recrawl in minutes, not weeks. Accordions ship as valid FAQ schema for rich results.</li>
+  <li><strong>Engagement to ad platforms</strong> - send an expand, unlock or conversion event to GA4, Meta Pixel, Google Ads or Google Tag Manager, and retarget the readers who actually engaged.</li>
+  <li><strong>Paragraph auto-collapse</strong> - hide everything from the Nth paragraph onward across your whole site, retroactively, with zero shortcodes. Built for cleaning up hundreds of old posts.</li>
   <li><strong>🔒 Content Locker</strong> - readers unlock hidden content with an email or a social share. Built-in Mailchimp, Brevo, MailPoet and webhook integrations, with leads stored locally. Turn your best content into a list-building engine.</li>
   <li><strong>🤖 AI Summaries (TL;DR)</strong> - auto-generate a concise summary of any post using your own OpenAI, Claude or Gemini key. Generated once per post, never per visitor, so it never runs up your API bill.</li>
   <li><strong>💳 Teaser Paywall</strong> - fade out content for non-members with a "continue reading" prompt. Soft (SEO-safe) or hard mode.</li>
@@ -63,7 +72,7 @@ It works via a simple shortcode and can be placed everywhere. You can try the Li
   <li><strong>Font Awesome Icons</strong> (6,000+) and <strong>Google Fonts</strong> integration</li>
   <li><strong>Advanced Styling</strong> - gradients, typography controls (size, line height, letter spacing, transform) and border radius</li>
   <li><strong>Lazy Loading</strong> - load heavy hidden content only when it is expanded, for faster initial page loads</li>
-  <li><strong>GA4 and Custom Events</strong> - fires a GA4 event automatically when gtag is present, and dispatches <code>rmwr:expand</code> JavaScript events you can hook into GTM or your own scripts</li>
+  <li><strong>GA4, Meta, Google Ads and Custom Events</strong> - fire conversion events into your ad and analytics platforms when readers engage, plus <code>rmwr:expand</code> JavaScript events you can hook into GTM or your own scripts</li>
   <li><strong>Deep Linking, Remember State</strong> and an <strong>Expand/Collapse All</strong> button (<code>[read_all]</code>)</li>
   <li><strong>Settings Import/Export</strong> - perfect for agencies rolling out to many sites</li>
 </ul>
@@ -76,12 +85,16 @@ It works via a simple shortcode and can be placed everywhere. You can try the Li
   <li><strong>Smooth Scroll</strong> - ✅ Free | ✅ Pro (configurable offset)</li>
   <li><strong>Print Optimization</strong> - ✅ Free | ✅ Pro</li>
   <li><strong>Fade Animation</strong> - ✅ Free | ✅ Pro (9 animation types)</li>
+  <li><strong>Reading progress bar and resume</strong> - ✅ Free | ✅ Pro</li>
+  <li><strong>Engagement dashboard widget</strong> - ✅ Free | ✅ Pro</li>
 </ul>
 <p><strong>PRO-only:</strong></p>
 <ul>
   <li><strong>Content Locker (email / social unlock)</strong> - 👁️ Free (preview) | ✅ Pro</li>
   <li><strong>Teaser Paywall</strong> - 👁️ Free (preview) | ✅ Pro</li>
   <li><strong>AI Summaries (OpenAI / Claude / Gemini)</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>AI Answer Optimizer (llms.txt, IndexNow, FAQ schema)</strong> - 👁️ Free (preview) | ✅ Pro</li>
+  <li><strong>Engagement events to GA4 / Meta / Google Ads</strong> - 👁️ Free (preview) | ✅ Pro</li>
   <li><strong>Real Analytics Dashboard + CSV export</strong> - 👁️ Free (teaser) | ✅ Pro</li>
   <li><strong>A/B Testing</strong> - 👁️ Free (preview) | ✅ Pro</li>
   <li><strong>Auto-Apply (sitewide + WooCommerce categories)</strong> - 👁️ Free (preview) | ✅ Pro</li>
@@ -98,20 +111,20 @@ It works via a simple shortcode and can be placed everywhere. You can try the Li
 </ul>
 <p><em>👁️ = shown in the free settings (disabled) so you can see exactly what PRO unlocks.</em></p>
 
-<h3>Why Upgrade to PRO?</h3>
+<h3>💰 Why go Pro</h3>
 <ul>
-  <li><strong>Capture leads</strong> - the content locker builds your email list from the content people already want to read</li>
-  <li><strong>Monetize</strong> - the teaser paywall gates premium content for members without hurting SEO</li>
-  <li><strong>Save hours</strong> - Auto-Apply collapses long content and WooCommerce category text sitewide with zero shortcodes</li>
-  <li><strong>Make data-driven decisions</strong> - a real analytics dashboard and A/B testing show what actually engages readers</li>
-  <li><strong>Rank better</strong> - accordion FAQ schema and a fully crawlable table of contents boost SEO</li>
-  <li><strong>Scale across sites</strong> - reusable global blocks and settings import/export are built for agencies and stores</li>
-  <li><strong>Priority Support</strong> - a dedicated team for PRO users</li>
+  <li><strong>Turn readers into leads.</strong> The content locker builds your email list from the content people already want.</li>
+  <li><strong>Get cited by AI, not skipped.</strong> AEO, llms.txt and FAQ schema put your answers in front of ChatGPT and Google AI Overviews.</li>
+  <li><strong>Spend ad budget on people who care.</strong> Send real engagement to GA4, Meta and Google Ads, then retarget them.</li>
+  <li><strong>Clean up years of content in an afternoon.</strong> Paragraph and word auto-collapse run sitewide, WooCommerce category text included, with no shortcodes.</li>
+  <li><strong>Know what works.</strong> A real analytics dashboard and A/B testing show what readers actually open and click.</li>
+  <li><strong>Roll out to every site.</strong> Reusable blocks and settings import/export are built for agencies and stores.</li>
+  <li><strong>Get answers fast.</strong> Priority support for Pro users.</li>
 </ul>
 
-<p>Enhance your WordPress site today with Read More Without Refresh, and take it to the next level with the PRO version. Elevate user satisfaction, capture leads, improve SEO, and make your content shine!</p>
+<p>If the free plugin already earns its place on your site, Pro pays for itself the first time it captures a lead, saves you an afternoon of manual edits, or gets one post picked up by an AI answer engine. You can try it free for 3 days.</p>
 
-<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Get the PRO version »</a></strong></p>
+<p><strong><a href="https://shop.8web.gr/product/read-more-without-refresh-pro/">Start your free Pro trial</a></strong></p>
 
 == Installation ==
 
@@ -176,7 +189,29 @@ It works via a simple shortcode and can be placed everywhere. You can try the Li
 7. Teaser Paywall for members (PRO)
 8. Accordion / FAQ mode with Table of Contents (PRO)
 
+== Upgrade Notice ==
+
+= 4.2.0 =
+Big jump from the 3.x line, with the core kept intact - your button texts and styles carry over. Adds the AI Answer Optimizer, engagement events, bulk paragraph collapse, a reading-progress bar and richer analytics. As with any major update, back up first.
+
 == Changelog ==
+
+= 4.2.0 =
+* NEW: AI Answer Optimizer (AEO) - publishes an llms.txt index and pings IndexNow so ChatGPT, Google AI Overviews and Bing find and re-crawl your content fast.
+* NEW: Engagement events - fire a conversion into GA4, Meta Pixel, Google Ads or Google Tag Manager when readers expand, unlock or convert, so you can retarget engaged readers.
+* NEW: Paragraph auto-collapse and a Smart cut point - clean up long or old posts in bulk with zero shortcodes.
+* NEW: Reading progress bar and a "continue reading" resume button (free).
+* NEW: Engagement heatmap and a "worth refreshing" report in the Pro analytics dashboard.
+* NEW: Related posts inside the expanded content, for internal linking and extra pageviews.
+* IMPROVED: The free tier now shows a real last-24-hours analytics view.
+* IMPROVED: Leaner database - old raw events are pruned automatically, while lifetime totals are always kept.
+* CHANGE: Button styling is now a Pro feature. Sites that already customized their button keep it exactly as is; new installs inherit the theme's link style.
+
+= 4.1.2 =
+* NEW: Dashboard engagement widget - see how many times readers expanded your content, with a live count and the last 24 hours, right on your WordPress Dashboard.
+* NEW: Optional "Powered by" credit link (off by default) in Settings > Behavior.
+* IMPROVED: Compatible with PHP 8.3, 8.4 and 8.5 (still runs on PHP 7.4+).
+* IMPROVED: Clearer upgrade information, including a 3-day free trial of Pro.
 
 = 4.1.1 =
 * FIXED: the [read] and [read_all] shortcodes now work inside category, tag and attribute (taxonomy) descriptions. The frontend script is now loaded on those archive pages, so the button toggles correctly.
