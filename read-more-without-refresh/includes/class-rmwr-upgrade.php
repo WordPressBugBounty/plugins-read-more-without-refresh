@@ -89,10 +89,11 @@ class RMWR_Upgrade {
     /**
      * Send the default Freemius pricing page to our branded page.
      *
-     * Only plain, unlicensed visits are redirected. Real checkout / trial
-     * requests (which carry plan_id, pricing_id, checkout, trial or
-     * billing_cycle) stay on the Freemius pricing page so its checkout runs
-     * untouched - that flow is what activates the license on return.
+     * Only plain, unlicensed visits are redirected - including the Freemius
+     * "Start Trial" menu link, which the SDK builds as just &trial=true. Real
+     * checkout requests always carry checkout, plan_id and pricing_id, so those
+     * stay on the Freemius pricing page and its checkout runs untouched - that
+     * flow is what activates the license on return.
      */
     public function redirect_pricing() {
         if (empty($_GET['page'])) {
@@ -102,7 +103,7 @@ class RMWR_Upgrade {
         if ('read_more_without_refresh-pricing' !== $page) {
             return;
         }
-        foreach (array('checkout', 'plan_id', 'pricing_id', 'trial', 'billing_cycle') as $checkout_param) {
+        foreach (array('checkout', 'plan_id', 'pricing_id') as $checkout_param) {
             if (isset($_GET[$checkout_param])) {
                 return;
             }

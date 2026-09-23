@@ -4,7 +4,7 @@ Tags: read more, read less, accordion, faq, expand, collapse, content locker, pa
 Requires at least: 5.8
 Tested up to: 7.1.1
 Requires PHP: 7.4
-Stable tag: 4.2.0
+Stable tag: 4.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,10 +191,16 @@ https://youtu.be/uBKMmvFgqqg
 
 == Upgrade Notice ==
 
+= 4.2.1 =
+Small fix: the "Start Trial" menu item now opens the redesigned pricing page instead of the old one.
+
 = 4.2.0 =
 Big jump from the 3.x line, with the core kept intact - your button texts and styles carry over. Adds the AI Answer Optimizer, engagement events, bulk paragraph collapse, a reading-progress bar and richer analytics. As with any major update, back up first.
 
 == Changelog ==
+
+= 4.2.1 =
+* FIXED: the "Start Trial" menu link now opens the redesigned pricing page instead of the legacy one.
 
 = 4.2.0 =
 * NEW: AI Answer Optimizer (AEO) - publishes an llms.txt index and pings IndexNow so ChatGPT, Google AI Overviews and Bing find and re-crawl your content fast.
