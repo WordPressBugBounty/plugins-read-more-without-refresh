@@ -646,7 +646,7 @@ class RMWR_Settings_Pro {
 
                 <div class="rmwr-sidebar">
                     <?php $this->render_license_pointer(); ?>
-                    <?php if (rmwr_is_premium()) { RMWR_Import_Export::render_tools_box(); } ?>
+                    <?php if (rmwr_is_premium() && class_exists('RMWR_Import_Export')) { RMWR_Import_Export::render_tools_box(); } ?>
 
                     <div class="rmwr-sidebar-widget">
                         <h3><?php esc_html_e('Need a hand?', 'rmwr'); ?></h3>

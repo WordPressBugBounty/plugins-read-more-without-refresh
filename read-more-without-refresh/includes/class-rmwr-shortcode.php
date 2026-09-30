@@ -129,7 +129,7 @@ class RMWR_Shortcode {
         }
 
         // Global content block: pull reusable content by slug/ID.
-        if (!empty($atts['block'])) {
+        if (!empty($atts['block']) && class_exists('RMWR_Global_Blocks')) {
             $block_content = RMWR_Global_Blocks::get_content($atts['block']);
             if ('' !== $block_content) {
                 $content = $block_content;
@@ -154,7 +154,7 @@ class RMWR_Shortcode {
 
         // Teaser Paywall: visitors without access get the fade-out teaser
         // instead of a working toggle.
-        if (!empty($atts['paywall']) && !RMWR_Paywall::user_has_access($atts['paywall'])) {
+        if (!empty($atts['paywall']) && class_exists('RMWR_Paywall') && !RMWR_Paywall::user_has_access($atts['paywall'])) {
             RMWR_Assets::mark_needed();
             return RMWR_Paywall::render_teaser($content, $atts, $key, $post_id);
         }
@@ -212,8 +212,8 @@ class RMWR_Shortcode {
             }
         }
 
-        // Engaged-user CTA
-        $show_cta = RMWR_CTA::should_show($atts['cta']);
+        // Engaged-user CTA (Pro: class only present in premium/direct builds).
+        $show_cta = class_exists('RMWR_CTA') && RMWR_CTA::should_show($atts['cta']);
 
         // Truncate mode: split content into a visible teaser + hidden rest.
         $visible_teaser = '';
@@ -236,7 +236,7 @@ class RMWR_Shortcode {
 
         // AI Summary box (uses the post-level cached summary)
         $ai_box = '';
-        if (filter_var($atts['ai_summary'], FILTER_VALIDATE_BOOLEAN) && $post_id) {
+        if (class_exists('RMWR_AI_Summary') && filter_var($atts['ai_summary'], FILTER_VALIDATE_BOOLEAN) && $post_id) {
             $ai_box = RMWR_AI_Summary::render_summary_box($post_id);
         }
 
@@ -316,7 +316,7 @@ class RMWR_Shortcode {
                 id="readlink<?php echo esc_attr($id); ?>"
                 data-open-text="<?php echo esc_attr($open_text); ?>"
                 data-close-text="<?php echo esc_attr($close_text); ?>"
-                <?php if ($uses_default_open && RMWR_AB_Testing::is_enabled()) : ?>
+                <?php if ($uses_default_open && class_exists('RMWR_AB_Testing') && RMWR_AB_Testing::is_enabled()) : ?>
                 data-ab="1"
                 <?php endif; ?>
                 aria-expanded="false"
@@ -343,10 +343,12 @@ class RMWR_Shortcode {
                     <?php echo $inner; ?>
                 <?php endif; ?>
             </div>
-            <?php if ('email' === $lock) : ?>
-                <?php echo RMWR_Locker::render_email_form_template($key, $post_id); ?>
-            <?php elseif ('share' === $lock) : ?>
-                <?php echo RMWR_Locker::render_share_template($key, $post_id); ?>
+            <?php if ($lock && class_exists('RMWR_Locker')) : ?>
+                <?php if ('email' === $lock) : ?>
+                    <?php echo RMWR_Locker::render_email_form_template($key, $post_id); ?>
+                <?php elseif ('share' === $lock) : ?>
+                    <?php echo RMWR_Locker::render_share_template($key, $post_id); ?>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
         <?php

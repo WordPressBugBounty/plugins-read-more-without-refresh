@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Read More Without Refresh
- * Version: 4.2.1
+ * Version: 4.3.0
  * Plugin URI: https://shop.8web.gr/read-more-without-refresh-pro/
  * Description: Boost your SEO without affecting user experience. Show/hide extra content on pages/posts/products and Custom Post Types - now with Content Locker, Teaser Paywall, AI Summaries, Auto-Apply rules, real Analytics, A/B testing and more.
  * Author: Eightweb Interactive
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('RMWR_PRO_VERSION', '4.2.1');
+define('RMWR_PRO_VERSION', '4.3.0');
 define('RMWR_PRO_FILE', __FILE__);
 define('RMWR_PRO_BASENAME', plugin_basename(__FILE__));
 define('RMWR_PRO_URL', plugin_dir_url(__FILE__));
@@ -37,20 +37,33 @@ require_once RMWR_PRO_PATH . 'includes/class-rmwr-schema.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-settings.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-block.php';
 
-// Feature modules
+// Free modules - always shipped (both free and premium builds).
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-analytics.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-aeo.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-ab-testing.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-auto-apply.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-sections.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-locker.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-paywall.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-ai-summary.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-cta.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-global-blocks.php';
-require_once RMWR_PRO_PATH . 'includes/class-rmwr-import-export.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-promote.php';
 require_once RMWR_PRO_PATH . 'includes/class-rmwr-upgrade.php';
+
+// Premium feature modules. These files are STRIPPED from the free
+// wordpress.org build (see tools/build), so they are loaded only when present.
+// The premium (Freemius) build and the direct (shop) build ship them; the free
+// build does not, and the file_exists() guard keeps that build fatal-free.
+foreach ( array(
+    'class-rmwr-aeo',
+    'class-rmwr-ab-testing',
+    'class-rmwr-auto-apply',
+    'class-rmwr-sections',
+    'class-rmwr-locker',
+    'class-rmwr-paywall',
+    'class-rmwr-ai-summary',
+    'class-rmwr-cta',
+    'class-rmwr-global-blocks',
+    'class-rmwr-import-export',
+) as $rmwr_pro_module ) {
+    $rmwr_pro_file = RMWR_PRO_PATH . 'includes/' . $rmwr_pro_module . '.php';
+    if ( file_exists( $rmwr_pro_file ) ) {
+        require_once $rmwr_pro_file;
+    }
+}
+unset( $rmwr_pro_module, $rmwr_pro_file );
 
 /**
  * Initialize plugin.

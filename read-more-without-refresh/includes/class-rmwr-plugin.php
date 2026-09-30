@@ -54,7 +54,11 @@ class RMWR_Pro {
         // their admin pages, meta boxes and REST endpoints never exist on a
         // free install. Their features are additionally gated at the shortcode
         // level (see RMWR_Shortcode) as defense in depth.
-        if (rmwr_is_premium()) {
+        // The class_exists() proxy keeps the free wordpress.org build (which
+        // ships without these files) fatal-free even during the brief window
+        // after a trial/license activation, before Freemius swaps in the
+        // premium build. All ten Pro modules load together, so one is enough.
+        if (rmwr_is_premium() && class_exists('RMWR_Locker')) {
             $this->modules['aeo']           = new RMWR_AEO();
             $this->modules['ab']            = new RMWR_AB_Testing();
             $this->modules['auto_apply']    = new RMWR_Auto_Apply();

@@ -125,8 +125,8 @@ class RMWR_Assets {
                 || has_shortcode((string) $post->post_content, 'read_all')
                 || has_block('rmwr/read-more', $post)
                 || has_block('read-more-without-refresh-pro/read-more-block', $post)
-                || RMWR_Auto_Apply::applies_to_post($post)
-                || RMWR_Sections::applies_to_post($post)) {
+                || (class_exists('RMWR_Auto_Apply') && RMWR_Auto_Apply::applies_to_post($post))
+                || (class_exists('RMWR_Sections') && RMWR_Sections::applies_to_post($post))) {
                 self::$needed = true;
             }
         }
@@ -136,7 +136,7 @@ class RMWR_Assets {
         if (is_category() || is_tag() || is_tax()) {
             $term = get_queried_object();
             $desc = ($term instanceof WP_Term) ? (string) $term->description : '';
-            if (RMWR_Auto_Apply::taxonomy_enabled()
+            if ((class_exists('RMWR_Auto_Apply') && RMWR_Auto_Apply::taxonomy_enabled())
                 || has_shortcode($desc, 'read')
                 || has_shortcode($desc, 'read_all')) {
                 self::$needed = true;
@@ -206,9 +206,9 @@ class RMWR_Assets {
             'printExpand'   => '1' === get_option('rmwr_print_expand', '1'),
             'remember'      => '1' === get_option('rmwr_remember_state', '0'),
             'deepLink'      => '1' === get_option('rmwr_deep_linking', '1'),
-            'abVariants'    => RMWR_AB_Testing::get_variants(),
-            'cta'           => RMWR_CTA::get_frontend_config(),
-            'locker'        => RMWR_Locker::get_frontend_config(),
+            'abVariants'    => class_exists('RMWR_AB_Testing') ? RMWR_AB_Testing::get_variants() : array(),
+            'cta'           => class_exists('RMWR_CTA') ? RMWR_CTA::get_frontend_config() : array(),
+            'locker'        => class_exists('RMWR_Locker') ? RMWR_Locker::get_frontend_config() : array(),
             'adEvents'      => self::ad_events_config(),
             'readingProgress' => array(
                 'bar'    => '1' === get_option('rmwr_reading_progress', '0'),
