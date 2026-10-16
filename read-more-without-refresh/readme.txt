@@ -4,7 +4,7 @@ Tags: read more, read less, accordion, faq, expand, collapse, content locker, pa
 Requires at least: 5.8
 Tested up to: 7.1.1
 Requires PHP: 7.4
-Stable tag: 4.3.0
+Stable tag: 4.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,9 @@ https://youtu.be/uBKMmvFgqqg
 
 == Upgrade Notice ==
 
+= 4.3.1 =
+Security update: the bundled Freemius SDK is patched to 2.13.5. Please update as soon as possible.
+
 = 4.3.0 =
 Leaner free build - the premium features now ship as a separate upgrade. Your free features are unchanged.
 
@@ -201,6 +204,9 @@ Small fix: the "Start Trial" menu item now opens the redesigned pricing page ins
 Big jump from the 3.x line, with the core kept intact - your button texts and styles carry over. Adds the AI Answer Optimizer, engagement events, bulk paragraph collapse, a reading-progress bar and richer analytics. As with any major update, back up first.
 
 == Changelog ==
+
+= 4.3.1 =
+* SECURITY: Updated the bundled Freemius SDK to 2.13.5, which patches a security issue. Updating is strongly recommended.
 
 = 4.3.0 =
 * IMPROVED: Internal packaging cleanup - the premium features are delivered as a separate upgrade, keeping the free plugin lean. No change to how the free features work.
